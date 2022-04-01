@@ -71,6 +71,9 @@ class ActivitiesUserFragment : Fragment() {
                     val dataRegister = query.documents.map {
                         it.toObject(Registration::class.java)
                     }
+                        .sortedByDescending {
+                            it?.registrationDate
+                        }
 
                     if (dataRegister.isNullOrEmpty()) {
                         showEmptyActivity(true)
@@ -88,12 +91,12 @@ class ActivitiesUserFragment : Fragment() {
 
     private fun showEmptyActivity(state: Boolean) {
         binding.apply {
-            if (state){
+            if (state) {
                 rvActivities.gone()
                 imgEmptyState.visible()
                 titleEmptyState.visible()
                 descEmptyState.visible()
-            }else{
+            } else {
                 rvActivities.visible()
                 imgEmptyState.gone()
                 titleEmptyState.gone()

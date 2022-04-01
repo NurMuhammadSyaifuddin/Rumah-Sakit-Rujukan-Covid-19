@@ -18,6 +18,8 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.project.activity_user.notification.EventAfterOneDayRegistration
 import com.project.core.domain.model.Hospital
 import com.project.core.domain.model.User
 import com.project.user.R
@@ -40,9 +42,12 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var loading: AlertDialog
 
+    private lateinit var alarmReceiver: EventAfterOneDayRegistration
+
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val db by lazy { Firebase.firestore }
     private val user by lazy { FirebaseAuth.getInstance().currentUser }
+    private val ref by lazy { FirebaseStorage.getInstance().reference }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,7 @@ class DetailActivity : AppCompatActivity() {
 
         // init
         loading = showAlertLoading(this)
+        alarmReceiver = EventAfterOneDayRegistration()
 
         getDataIntentForDetail()
 
@@ -128,98 +134,125 @@ class DetailActivity : AppCompatActivity() {
                                             getString(R.string.signed_up_today, hospitalName)
                                         ).show()
                                     } else {
-                                        val registration = hashMapOf(
-                                            "id" to id,
-                                            "idUser" to idUser,
-                                            "registrationNumber" to registrationNumber,
-                                            "registrationDate" to registrationDate,
-                                            "name" to name,
-                                            "hospitalName" to hospitalName,
-                                            "imageUrl" to imageUrl,
-                                            "acceptDate" to "",
-                                            "statusRegistration" to WAIT,
-                                            "note" to "",
-                                            "queue" to 0,
-                                            "typeActivities" to getString(R.string.registration)
-                                        )
 
-                                        val registrationForDetail = Registration(
-                                            id = id,
-                                            idUser = idUser,
-                                            registrationNumber = registrationNumber,
-                                            registrationDate = registrationDate,
-                                            name = name,
-                                            hospitalName = hospitalName,
-                                            imageUrl = imageUrl
-                                        )
+                                        viewModel.storageReference(ref, idUser)
+                                            .downloadUrl
+                                            .addOnCompleteListener { task ->
+                                                val photoUrl = task.result.toString()
 
-                                        viewModel.collectionRegistration(
-                                            db,
-                                            idUser,
-                                            registrationNumber
-                                        )
-                                            .set(registration)
-
-                                        viewModel.collectionRegistrationAdmin(
-                                            db,
-                                            hospitalName,
-                                            registrationNumber
-                                        )
-                                            .set(registration)
-
-                                        Intent(
-                                            this@DetailActivity,
-                                            DetailRegistrationActivity::class.java
-                                        ).also { intent ->
-                                            intent.putExtra(
-                                                EXTRA_DATA_FOR_REGISTRATION,
-                                                registrationForDetail
-                                            )
-                                            startActivity(intent)
-                                            loading.dismiss()
-                                            finish()
-                                        }
-
-                                        val notificationManager =
-                                            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                                        val builder =
-                                            NotificationCompat.Builder(
-                                                this@DetailActivity,
-                                                CHANNEL_ID
-                                            )
-                                                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                                                .setContentTitle(getString(R.string.registration_wait_title))
-                                                .setContentText(
-                                                    getString(
-                                                        R.string.register_wait,
-                                                        hospitalName
-                                                    )
+                                                val registrationForDetail = Registration(
+                                                    id = id,
+                                                    idUser = idUser,
+                                                    registrationNumber = registrationNumber,
+                                                    registrationDate = registrationDate,
+                                                    name = name,
+                                                    hospitalName = hospitalName,
+                                                    imageUrl = imageUrl
                                                 )
-                                                .setStyle(
-                                                    NotificationCompat.BigTextStyle().bigText(
-                                                        getString(
-                                                            R.string.register_wait,
-                                                            hospitalName
+
+                                                if (task.isSuccessful) registrationForDetail.photUrl =
+                                                    photoUrl
+                                                else registrationForDetail.photUrl =
+                                                    result?.photoUrl.toString()
+
+                                                val registration = hashMapOf(
+                                                    "id" to id,
+                                                    "idUser" to idUser,
+                                                    "photoUrl" to registrationForDetail.photUrl.toString(),
+                                                    "registrationNumber" to registrationNumber,
+                                                    "registrationDate" to registrationDate,
+                                                    "name" to name,
+                                                    "hospitalName" to hospitalName,
+                                                    "imageUrl" to imageUrl,
+                                                    "acceptDate" to "",
+                                                    "statusRegistration" to WAIT,
+                                                    "note" to "",
+                                                    "queue" to 0,
+                                                    "typeActivities" to getString(R.string.registration)
+                                                )
+
+                                                viewModel.collectionRegistration(
+                                                    db,
+                                                    idUser,
+                                                    registrationNumber
+                                                )
+                                                    .set(registration)
+
+                                                viewModel.collectionRegistrationAdmin(
+                                                    db,
+                                                    hospitalName,
+                                                    registrationNumber
+                                                )
+                                                    .set(registration)
+
+                                                Intent(
+                                                    this@DetailActivity,
+                                                    DetailRegistrationActivity::class.java
+                                                ).also { intent ->
+                                                    intent.putExtra(
+                                                        EXTRA_DATA_FOR_REGISTRATION,
+                                                        registrationForDetail
+                                                    )
+                                                    startActivity(intent)
+                                                    loading.dismiss()
+                                                    finish()
+                                                }
+
+                                                val notificationManager =
+                                                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                                                val builder =
+                                                    NotificationCompat.Builder(
+                                                        this@DetailActivity,
+                                                        CHANNEL_ID
+                                                    )
+                                                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                                                        .setContentTitle(getString(R.string.registration_wait_title))
+                                                        .setContentText(
+                                                            getString(
+                                                                R.string.register_wait,
+                                                                hospitalName
+                                                            )
                                                         )
+                                                        .setStyle(
+                                                            NotificationCompat.BigTextStyle()
+                                                                .bigText(
+                                                                    getString(
+                                                                        R.string.register_wait,
+                                                                        hospitalName
+                                                                    )
+                                                                )
+                                                        )
+                                                        .setAutoCancel(true)
+
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                    val channel = NotificationChannel(
+                                                        CHANNEL_ID,
+                                                        CHANNEL_NAME,
+                                                        NotificationManager.IMPORTANCE_DEFAULT
                                                     )
+
+                                                    builder.setChannelId(CHANNEL_ID)
+
+                                                    notificationManager.createNotificationChannel(
+                                                        channel
+                                                    )
+                                                }
+
+                                                val notification = builder.build()
+
+                                                notificationManager.notify(
+                                                    NOTIFICATION_ID,
+                                                    notification
                                                 )
-                                                .setAutoCancel(true)
 
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            val channel = NotificationChannel(
-                                                CHANNEL_ID,
-                                                CHANNEL_NAME,
-                                                NotificationManager.IMPORTANCE_DEFAULT
-                                            )
+                                                alarmReceiver.setUpAlarmAfterOneDayRegistration(
+                                                    this@DetailActivity,
+                                                    hospital,
+                                                    registrationForDetail
+                                                )
+                                            }
 
-                                            builder.setChannelId(CHANNEL_ID)
 
-                                            notificationManager.createNotificationChannel(channel)
-                                        }
-
-                                        val notification = builder.build()
-
-                                        notificationManager.notify(NOTIFICATION_ID, notification)
                                     }
                                 }
                         }
@@ -319,6 +352,6 @@ class DetailActivity : AppCompatActivity() {
         private const val IS_FAVORITE = "isFavorite"
         private const val CHANNEL_ID = "channel_01"
         private const val CHANNEL_NAME = "registration_waiting"
-        private const val NOTIFICATION_ID = 1
+        private const val NOTIFICATION_ID = 0
     }
 }

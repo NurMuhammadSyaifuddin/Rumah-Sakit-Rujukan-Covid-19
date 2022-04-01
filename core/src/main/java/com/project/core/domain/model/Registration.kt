@@ -2,7 +2,6 @@ package com.project.core.domain.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import com.google.gson.annotations.SerializedName
 import com.project.core.utils.WAIT
 import kotlinx.parcelize.Parcelize
 
@@ -11,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class Registration(
     var id: String? = null,
     var idUser: String? = null,
+    var photUrl: String? = null,
     var registrationNumber: String? = null,
     var registrationDate: String? = null,
     var acceptDate: String? = null,

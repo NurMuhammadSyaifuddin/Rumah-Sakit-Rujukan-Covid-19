@@ -21,4 +21,4 @@ fun getRandomIdNumber(): String =
     }.joinToString("")
 
 fun getCurrentTime(): String =
-    SimpleDateFormat("dd-MM-yyyy  HH:mm:ss", Locale.getDefault()).format(Date())
+    SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
