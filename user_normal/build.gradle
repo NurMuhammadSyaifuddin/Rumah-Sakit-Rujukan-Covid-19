@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.project.user"
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation project (":app")
+    implementation project (":core")
+    implementation project (":activity_user")
+    implementation project (":chat_user")
+    implementation project (":bookmark_user")
+    implementation project (":profile_user")
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+}

@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.project.rumahsakitrujukancovid_19"
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL_IMAGE_PROFILE", BASE_URL_IMAGE_PROFILE
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+    dynamicFeatures = [':user_normal', ':hospital_admin', ':chat_user', ':bookmark_user', ':activity_user', ':profile_user', ':chat_admin', ':profile_admin']
+}
+
+dependencies {
+    implementation project (":core")
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+}

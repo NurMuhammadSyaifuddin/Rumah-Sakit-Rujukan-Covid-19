@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "hospitals": {
+      ".read": true,
+      ".write": "auth !== null"
+    },
+    "admin": {
+      ".read": true
+    }
+  }
+}

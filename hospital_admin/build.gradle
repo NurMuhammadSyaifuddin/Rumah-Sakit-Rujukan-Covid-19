@@ -1,0 +1,32 @@
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+}
+
+apply from: '../shared_dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.project.hospital_admin"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation project (":app")
+    implementation project (":core")
+    implementation project (":chat_admin")
+    implementation project (":profile_admin")
+}

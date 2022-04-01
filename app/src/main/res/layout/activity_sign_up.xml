@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    tools:context=".ui.signup.SignUpActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_view_sign_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_32"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/sign_up"
+            android:textAlignment="center"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/sp_32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/id_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_sign_up"
+            app:layout_constraintStart_toStartOf="@id/text_view_sign_up"
+            app:layout_constraintTop_toTopOf="@id/text_view_sign_up"
+            app:srcCompat="@drawable/ic_close"
+            app:tint="@color/gray"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/login"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_20"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_sign_up"
+            app:layout_constraintEnd_toEndOf="@id/text_view_sign_up"
+            app:layout_constraintTop_toTopOf="@id/text_view_sign_up" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_name"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/text_view_sign_up"
+            app:layout_constraintStart_toStartOf="@id/text_view_sign_up"
+            app:layout_constraintTop_toBottomOf="@id/text_view_sign_up">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/name"
+                android:inputType="text"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="Autofill" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_email"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/text_input_name"
+            app:layout_constraintStart_toStartOf="@id/text_input_name"
+            app:layout_constraintTop_toBottomOf="@id/text_input_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="Autofill" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_password"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/text_input_email"
+            app:layout_constraintStart_toStartOf="@id/text_input_email"
+            app:layout_constraintTop_toBottomOf="@id/text_input_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="Autofill" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_confirm_password"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/text_input_password"
+            app:layout_constraintStart_toStartOf="@id/text_input_password"
+            app:layout_constraintTop_toBottomOf="@id/text_input_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dp_16"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_16"
+                tools:ignore="Autofill" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text_view_user_as"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/register_as"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="@id/text_input_confirm_password"
+            app:layout_constraintTop_toBottomOf="@id/text_input_confirm_password" />
+
+        <RadioGroup
+            android:id="@+id/rg_user_as"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/text_view_user_as"
+            app:layout_constraintStart_toStartOf="@id/rg_user_as"
+            app:layout_constraintTop_toBottomOf="@id/text_view_user_as">
+
+            <RadioButton
+                android:id="@+id/rb_prospective_patient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_4"
+                android:paddingEnd="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_4"
+                android:text="@string/user_normal"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text_flat_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_hospital_admin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingTop="@dimen/dp_4"
+                android:paddingEnd="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_4"
+                android:text="@string/hospital_admin"
+                android:textAlignment="center"
+                android:textColor="@drawable/radio_text_flat_selector" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/text_view_creating_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/creating_account_policy"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/rg_user_as"
+            app:layout_constraintStart_toStartOf="@id/rg_user_as"
+            app:layout_constraintTop_toBottomOf="@id/rg_user_as" />
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:background="@drawable/bg_btn_green"
+            android:enabled="false"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/create_account"
+            android:layout_marginBottom="@dimen/dp_32"
+            app:layout_constraintEnd_toEndOf="@id/text_view_creating_account"
+            app:layout_constraintStart_toStartOf="@id/text_view_creating_account"
+            app:layout_constraintTop_toBottomOf="@id/text_view_creating_account"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

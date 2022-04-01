@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".ui.registration.DetailRegistrationActivity">
+
+    <com.vipulasri.ticketview.TicketView
+        android:id="@+id/ticket_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_32"
+        app:layout_constraintBottom_toTopOf="@id/btn_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ticketDividerDashGap="@dimen/dp_8"
+        app:ticketDividerPadding="@dimen/dp_0"
+        app:ticketDividerType="dash"
+        app:ticketScallopPositionPercent="40"
+        app:ticketScallopRadius="@dimen/dp_12"
+        app:ticketShowDivider="true" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.372" />
+
+    <TextView
+        android:id="@+id/text_view_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration"
+        android:textSize="@dimen/sp_24"
+        android:textColor="@color/textColorPrimary"
+        android:fontFamily="@font/poppins_semibold"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/dp_16"
+        app:layout_constraintTop_toTopOf="@id/ticket_view"
+        app:layout_constraintStart_toStartOf="@id/ticket_view"
+        app:layout_constraintEnd_toEndOf="@id/ticket_view"
+        app:layout_constraintBottom_toTopOf="@id/text_view_queue_number"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/text_view_queue_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/queueu_number"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintBottom_toTopOf="@id/tv_queue"
+        app:layout_constraintEnd_toEndOf="@id/ticket_view"
+        app:layout_constraintStart_toStartOf="@id/ticket_view"
+        app:layout_constraintTop_toBottomOf="@id/text_view_registration" />
+
+    <TextView
+        android:id="@+id/tv_queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorPrimaryDark"
+        android:textSize="@dimen/sp_84"
+        android:includeFontPadding="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/guidline"
+        app:layout_constraintEnd_toEndOf="@id/ticket_view"
+        app:layout_constraintStart_toStartOf="@id/ticket_view"
+        app:layout_constraintTop_toBottomOf="@id/text_view_queue_number"
+        tools:ignore="SpUsage"
+        tools:text="26" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_0"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/guidline"
+        app:layout_constraintStart_toStartOf="@id/ticket_view"
+        app:layout_constraintEnd_toEndOf="@id/ticket_view"
+        app:layout_constraintBottom_toBottomOf="@id/ticket_view">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidline_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.45"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_date"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/date"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_date"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_date" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_registration_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="27 Mei 2001 | 00:00:00 WIB" />
+
+            <TextView
+                android:id="@+id/text_view_registration_number"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/registration_number"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_registration_number"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_registration_number" />
+
+            <TextView
+                android:id="@+id/tv_registration_number"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_date"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="22083301083778391" />
+
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/name"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_hospital_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_registration_number"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Nur Muhammad Syaifuddin" />
+
+            <TextView
+                android:id="@+id/text_view_hospital_name"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/hospital_name"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_hospital_name"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_hospital_name" />
+
+            <TextView
+                android:id="@+id/tv_hospital_name"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_status_registration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="RS Souwondo Pati" />
+
+            <TextView
+                android:id="@+id/text_view_status_registration"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/status"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_status_registration"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_status_registration" />
+
+            <TextView
+                android:id="@+id/tv_status_registration"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_accept_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_hospital_name"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Menunggu Konfirmasi Admin" />
+
+            <TextView
+                android:id="@+id/text_view_accept_date"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/accept_date"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_accept_date"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_accept_date" />
+
+            <TextView
+                android:id="@+id/tv_accept_date"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_admin_notes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_status_registration"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="27 Mei 2001 | 00:01:00 WIB" />
+
+            <TextView
+                android:id="@+id/text_view_admin_notes"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/admin_notes"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@id/tv_admin_notes"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_admin_notes" />
+
+            <TextView
+                android:id="@+id/tv_admin_notes"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:layout_marginBottom="@dimen/dp_32"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_accept_date"
+                tools:text="Nur Muhammad Syaifuddin" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:background="@drawable/bg_btn_ok"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/ok"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ticket_view"
+        app:layout_goneMarginBottom="@dimen/dp_32"
+        tools:ignore="PrivateResource" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

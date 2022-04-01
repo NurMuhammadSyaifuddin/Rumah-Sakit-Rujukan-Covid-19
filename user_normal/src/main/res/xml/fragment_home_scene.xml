@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <Transition
+        app:constraintSetEnd="@+id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="1000">
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:moveWhenScrollAtTop="true"
+            app:touchAnchorId="@+id/rv_hospitals"
+            app:touchAnchorSide="top" />
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/loading">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint
+            android:id="@id/rv_hospitals">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@id/tv_empty_search_hospital">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/view_header_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/tv_say_hello_user"
+            android:visibility="gone" />
+
+        <Constraint
+            android:id="@+id/text_view_search"
+            android:visibility="gone" />
+
+        <Constraint
+            android:id="@+id/img_profile"
+            android:visibility="gone" />
+
+        <Constraint
+            android:id="@+id/search_view_hospital"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:background="@drawable/bg_search_view"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/rv_hospitals"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/dp_8"
+            android:paddingTop="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_8"
+            android:paddingBottom="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_16"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_view_hospital"
+            tools:listitem="@layout/item_list_hospital" >
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/tv_empty_search_hospital"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            tools:text="Tidak ada data"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_view_hospital">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@+id/loading">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>
