@@ -44,4 +44,5 @@
     <string name="this_is_the_hospital_where_you_work">This is the hospital where you work</string>
     <string name="no_hospital_found">No hospital found</string>
     <string name="yes">OK</string>
+    <string name="title_profile_hospital">Profile Hospital</string>
 </resources>

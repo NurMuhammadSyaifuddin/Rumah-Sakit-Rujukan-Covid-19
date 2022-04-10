@@ -18,12 +18,6 @@
         tools:layout="@layout/fragment_activities_user" />
 
     <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.project.chat_user.ChatUserFragment"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat_user" />
-
-    <fragment
         android:id="@+id/navigation_bookmark"
         android:name="com.project.bookmark_user.BookmarkHospitalFragment"
         android:label="fragment_bookmark"

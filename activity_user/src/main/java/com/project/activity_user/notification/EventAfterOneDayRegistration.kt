@@ -48,7 +48,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                     val registrationMap = hashMapOf(
                         "id" to registration?.id,
                         "idUser" to registration?.idUser,
-                        "photoUrl" to registration?.photUrl,
+                        "photoUrl" to registration?.photoUrl,
                         "registrationNumber" to registration?.registrationNumber,
                         "registrationDate" to registration?.registrationDate,
                         "name" to registration?.name,
@@ -58,13 +58,14 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                         "statusRegistration" to REJECT,
                         "note" to context.getString(R.string.reject_by_system),
                         "queue" to 0,
-                        "typeActivities" to context.getString(R.string.registration)
+                        "typeActivities" to context.getString(R.string.registration),
+                        "isShowNotif" to false
                     )
 
                     db.collection(PATH_REGISTRATION).document(PATH_USER).collection(registration?.idUser.toString()).document(registration?.registrationNumber.toString())
                         .set(registrationMap)
 
-                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(hospital?.name.toString()).document(registration?.registrationNumber.toString())
+                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(hospital?.emailAdmin.toString()).document(registration?.registrationNumber.toString())
                         .set(registrationMap)
 
                     val intentToDetailRegistration = Intent(
@@ -104,21 +105,24 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                         .setAutoCancel(true)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        val channelId = CHANNEL_ID + getRandomStringSingle()
+                        val channelName = CHANNEL_NAME + getRandomStringSingle()
+
                         val channel = NotificationChannel(
-                            CHANNEL_ID,
-                            CHANNEL_NAME,
+                            channelId,
+                            channelName,
                             NotificationManager.IMPORTANCE_DEFAULT
                         ).apply {
                             enableVibration(true)
                             vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
                         }
 
-                        builder.setChannelId(CHANNEL_ID)
+                        builder.setChannelId(channelId)
                         notificationManager.createNotificationChannel(channel)
                     }
 
                     val notification = builder.build()
-                    notificationManager.notify(NOTIFICATION_ID, notification)
+                    notificationManager.notify(NOTIFICATION_ID + getRandomIntSingle(), notification)
                 }
             }
 
@@ -135,7 +139,6 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
             it.putExtra(EXTRA_DATA_REGISTRATION, registration)
         }
 
-
         val calendar = Calendar.getInstance().apply {
             set(Calendar.YEAR, Integer.parseInt(date[0]))
             set(Calendar.MONTH, Integer.parseInt(date[1]) - 1)
@@ -145,16 +148,25 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
             set(Calendar.SECOND, 0)
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME++, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 
+    fun cancelRepeatingAlarm(context: Context){
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, EventAfterOneDayRegistration::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
+        pendingIntent.cancel()
+
+        alarmManager.cancel(pendingIntent)
+    }
+
     companion object {
-        private var ID_ONE_TIME = 1
-        const val EXTRA_DATA_HOSPITAL = "extra_data_hospital"
-        const val EXTRA_DATA_REGISTRATION = "extra_data_registration"
-        const val CHANNEL_ID = "channel_after_one_day_registration"
-        const val CHANNEL_NAME = "channel_name_after_one_day_registration"
-        const val NOTIFICATION_ID = 2
+        private var ID_ONE_TIME = getRandomIntSingle()
+        private const val EXTRA_DATA_HOSPITAL = "extra_data_hospital"
+        private const val EXTRA_DATA_REGISTRATION = "extra_data_registration"
+        private const val CHANNEL_ID = "channel_after_one_day_registration"
+        private const val CHANNEL_NAME = "channel_name_after_one_day_registration"
+        private const val NOTIFICATION_ID = 2
     }
 }

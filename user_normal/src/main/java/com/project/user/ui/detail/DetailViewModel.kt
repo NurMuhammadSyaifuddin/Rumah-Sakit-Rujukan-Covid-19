@@ -21,8 +21,8 @@ class DetailViewModel: ViewModel() {
     fun getCollectionRegistration(db: FirebaseFirestore, idUser: String) =
         db.collection(PATH_REGISTRATION).document(PATH_USER).collection(idUser)
 
-    fun collectionRegistrationAdmin(db: FirebaseFirestore, hospitalName: String, registrationNumber: String) =
-        db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(hospitalName).document(registrationNumber)
+    fun collectionRegistrationAdmin(db: FirebaseFirestore, emailAdmin: String, registrationNumber: String) =
+        db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(emailAdmin).document(registrationNumber)
 
     fun collectionUser(db: FirebaseFirestore, uid: String) =
         db.collection(PATH_USER).document(uid)

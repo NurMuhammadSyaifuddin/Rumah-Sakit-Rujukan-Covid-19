@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#49A35A</color>
+    <color name="colorPrimaryDark">#0C732F</color>
+    <color name="colorPrimaryLight">#7BD588</color>
+
+    <color name="textColorPrimary">#222223</color>
+    <color name="textColorPrimaryDark">#080808</color>
+    <color name="textColorPrimaryLight">#121E1D</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="gray">#E1DEDE</color>
+
+    <color name="bg_edit_text">#EFEFEF</color>
+
+    <color name="bg_loading_auth">#CE5C5C5C</color>
+
+    <color name="yellow">#ffff00</color>
+</resources>

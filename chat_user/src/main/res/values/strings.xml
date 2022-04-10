@@ -1,7 +1,0 @@
-<resources>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="message">Message</string>
-    <string name="you_don_t_have_a_list_of_message">You don\'t have a list of message</string>
-    <string name="empty_state_title_no_message">No message Yet</string>
-</resources>

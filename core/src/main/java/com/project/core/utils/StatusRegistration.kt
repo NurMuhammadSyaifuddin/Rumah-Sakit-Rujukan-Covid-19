@@ -20,5 +20,15 @@ fun getRandomIdNumber(): String =
         ('0'..'9').random()
     }.joinToString("")
 
+fun getRandomStringSingle(): String =
+    List(16){
+        (('a'..'z') + ('A'..'Z') + ('0'..'9')).random()
+    }.joinToString("")
+
+fun getRandomIntSingle(): Int =
+    List(8){
+        ('0'..'9').random()
+    }.joinToString("").toInt()
+
 fun getCurrentTime(): String =
     SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())

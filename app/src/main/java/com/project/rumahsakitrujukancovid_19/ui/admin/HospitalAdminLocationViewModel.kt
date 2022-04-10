@@ -13,9 +13,6 @@ class HospitalAdminLocationViewModel(private val pref: LevelUserPreference, priv
     fun getHospitalName() =
         hospitalUseCase.getHospitals().asLiveData()
 
-    fun getSearchHospitalName(name: String) =
-        hospitalUseCase.getSearchHospial(name).asLiveData()
-
     fun setCollectionUser(db: FirebaseFirestore, uid: String) =
         db.collection(PATH_USER).document(uid)
 

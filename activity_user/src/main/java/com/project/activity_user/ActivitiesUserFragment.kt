@@ -43,8 +43,8 @@ class ActivitiesUserFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        loadKoinModules(activityUserModule)
         super.onViewCreated(view, savedInstanceState)
+        loadKoinModules(activityUserModule)
 
         // init
         adapter = ActivityUserAdapter().apply {
@@ -81,10 +81,10 @@ class ActivitiesUserFragment : Fragment() {
                     } else {
                         showEmptyActivity(false)
                         adapter.registration = dataRegister as MutableList<Registration>
+                        rvActivities.adapter = adapter
+                        rvActivities.setHasFixedSize(true)
                     }
 
-                    rvActivities.adapter = adapter
-                    rvActivities.setHasFixedSize(true)
                 }
         }
     }

@@ -4,4 +4,9 @@
     <string name="home">Home</string>
     <string name="chat">Chat</string>
     <string name="profile">Profile</string>
+    <string name="activities">Activities</string>
+    <string name="empty_state_title_no_activities_item">No acvitiities yet</string>
+    <string name="you_don_t_have_a_list_of_activities">You don\'t have a list of activities</string>
+    <string name="new_registration">New Registration</string>
+    <string name="new_registration_from_user">New registration from %s</string>
 </resources>

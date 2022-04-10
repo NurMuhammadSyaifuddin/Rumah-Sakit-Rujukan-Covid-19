@@ -38,7 +38,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    dynamicFeatures = [':user_normal', ':hospital_admin', ':chat_user', ':bookmark_user', ':activity_user', ':profile_user', ':chat_admin', ':profile_admin']
+    dynamicFeatures = [':user_normal', ':hospital_admin', ':chat_user', ':bookmark_user', ':activity_user', ':profile_user', ':chat_admin', ':profile_admin', ':profile_hospital']
 }
 
 dependencies {

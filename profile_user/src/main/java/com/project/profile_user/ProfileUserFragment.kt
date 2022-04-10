@@ -21,7 +21,6 @@ import com.project.profile_user.databinding.FragmentProfileUserBinding
 import com.project.profile_user.di.profileUserModule
 import com.project.profile_user.utils.showAlertDialogEditName
 import com.project.profile_user.utils.showBottomSheetDialogEditImage
-import com.project.rumahsakitrujukancovid_19.BuildConfig
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginActivity
 import com.project.rumahsakitrujukancovid_19.utils.showToast
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -131,7 +130,7 @@ class ProfileUserFragment : Fragment() {
                 ) { name ->
                     viewModel.collectionUser(db, user?.uid.toString())
                         .update(
-                            "name", name, "photoUrl", "${BuildConfig.BASE_URL_IMAGE_PROFILE}$name"
+                            "name", name
                         )
                         .addOnSuccessListener {
                             getUserProfile()
@@ -150,19 +149,17 @@ class ProfileUserFragment : Fragment() {
     }
 
     private fun getPickerEditImage() {
-        binding.apply {
-            showBottomSheetDialogEditImage(activity as FragmentActivity,
-                {
-                    removeProfile()
-                },
-                {
-                    openCamera()
-                },
-                {
-                    openGallery()
-                }
-            ).show()
-        }
+        showBottomSheetDialogEditImage(activity as FragmentActivity,
+            {
+                removeProfile()
+            },
+            {
+                openCamera()
+            },
+            {
+                openGallery()
+            }
+        ).show()
     }
 
     private fun removeProfile() {
@@ -176,7 +173,7 @@ class ProfileUserFragment : Fragment() {
                 .addOnFailureListener {
                     (activity as FragmentActivity).showToast(it.message.toString())
                 }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Timber.d(e.message.toString())
         }
     }
@@ -220,7 +217,7 @@ class ProfileUserFragment : Fragment() {
                         tvNameUser.text = result?.name.toString()
                         tvEmailUser.text = result?.email.toString()
                     }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Timber.d(e.message.toString())
             }
 

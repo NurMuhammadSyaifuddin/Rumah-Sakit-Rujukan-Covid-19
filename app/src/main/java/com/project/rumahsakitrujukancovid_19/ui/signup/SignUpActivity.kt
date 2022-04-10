@@ -198,6 +198,7 @@ class SignUpActivity : AppCompatActivity() {
                                                         photoUrl,
                                                         HOSPITAL_ADMIN
                                                     )
+
                                                 Intent(
                                                     this@SignUpActivity,
                                                     HospitalAdminLocationActivity::class.java

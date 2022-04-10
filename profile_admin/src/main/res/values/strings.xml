@@ -1,4 +1,14 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_text">-</string>
+    <string name="logout">Logout</string>
+    <string name="image_profile_updated">Image has been successfully updated</string>
+    <string name="photo_profile">Photo profile</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="save">Save</string>
+    <string name="name_changed_successfully">Name changed Successfully</string>
+    <string name="delete_image_success">Delete image profile is successfull</string>
 </resources>

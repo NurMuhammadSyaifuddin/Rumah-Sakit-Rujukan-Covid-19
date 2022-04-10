@@ -24,16 +24,4 @@ class LevelUserPreference (private val dataStore: DataStore<Preferences>){
             it[userKey] ?: USER_NORMAL
         }
 
-//    companion object{
-//        @Volatile
-//        private var INSTANCE: LevelUserPreference? = null
-//
-//        fun getInstance(dataStore: DataStore<Preferences>): LevelUserPreference =
-//            INSTANCE ?: synchronized(this){
-//                INSTANCE ?: LevelUserPreference(dataStore).apply {
-//                    INSTANCE = this
-//                }
-//            }
-//    }
-
 }

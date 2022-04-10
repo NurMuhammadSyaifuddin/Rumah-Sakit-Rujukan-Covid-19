@@ -29,4 +29,5 @@ dependencies {
     implementation project (":core")
     implementation project (":chat_admin")
     implementation project (":profile_admin")
+    implementation project (":profile_hospital")
 }

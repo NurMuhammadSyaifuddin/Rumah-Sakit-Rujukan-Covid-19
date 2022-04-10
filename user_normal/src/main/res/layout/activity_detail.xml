@@ -289,22 +289,6 @@
                 app:tint="@color/textColorPrimary" />
 
             <Button
-                android:id="@+id/btn_chat"
-                android:layout_width="@dimen/dp_0"
-                android:layout_height="@dimen/dp_40"
-                android:background="@drawable/bg_btn_chat"
-                app:backgroundTintMode="add"
-                android:text="@string/chat"
-                android:layout_marginStart="@dimen/dp_8"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="@dimen/dp_4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_bookmark"
-                app:layout_constraintEnd_toStartOf="@id/btn_register"/>
-
-            <Button
                 android:id="@+id/btn_register"
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="@dimen/dp_40"
@@ -317,7 +301,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_chat"/>
+                app:layout_constraintStart_toEndOf="@id/btn_bookmark"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -134,7 +135,7 @@ class LoginActivity : AppCompatActivity() {
             viewModel.getLevelUser().observe(this){
                 when(it){
                     USER_NORMAL -> moveToUserNormalModule()
-                    HOSPITAL_ADMIN -> {}
+                    HOSPITAL_ADMIN -> moveToHospitalAdmin()
                 }
             }
         }
@@ -146,17 +147,20 @@ class LoginActivity : AppCompatActivity() {
             .addOnSuccessListener { query ->
                 val data = query.documents
                     .asSequence()
-                    .filter { it.id == auth.currentUser?.uid }
                     .map { snapshot ->
                         snapshot.toObject(User::class.java)
                     }
+                    .filter { it?.email.toString() == binding.edtEmail.text.toString() }
                     .take(1)
+                    .toList()
 
-                when (data.toList()[0]?.status){
+                when (data[0]?.status){
                     USER_NORMAL -> {
+                        viewModel.saveLevelUser(USER_NORMAL)
                         moveToUserNormalModule()
                     }
                     HOSPITAL_ADMIN -> {
+                        viewModel.saveLevelUser(HOSPITAL_ADMIN)
                         moveToHospitalAdmin()
                     }
                 }

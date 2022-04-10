@@ -33,7 +33,7 @@ class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>
         fun bind(item: Registration) {
             binding.apply {
                 tvTypeActivities.text = item.typeActivities.toString()
-                imgHospital.loadImage(item.imageUrl.toString())
+                imgHospital.loadImage(item.photoUrl.toString())
                 tvHospitalName.text = item.hospitalName.toString()
                 tvRegistrationNumber.text = item.registrationNumber.toString()
                 tvRegistrationDate.text = item.registrationDate.toString()

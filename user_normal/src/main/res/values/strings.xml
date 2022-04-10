@@ -31,5 +31,7 @@
     <string name="registration_wait_title">Waiting for Registration Confirmation</string>
     <string name="register_wait">You have successfully registered at %s Hospital, Wait for the admin to confirm your registration</string>
     <string name="signed_up_today">You have registered at the %s Hospital today, wait for the admin to respond to your registration or register again tomorrow</string>
-    <string name="signed_up_today_accept">Your registration today at %s Hospital has been received. You can register again tomorrow</string>>
+    <string name="signed_up_today_accept">Your registration today at %s Hospital has been received. You can register again tomorrow</string>
+    <string name="not_yet_admin">Currently you can\'t register, because the %s Hospital doesn\'t have an admin yet</string>
+    >
 </resources>

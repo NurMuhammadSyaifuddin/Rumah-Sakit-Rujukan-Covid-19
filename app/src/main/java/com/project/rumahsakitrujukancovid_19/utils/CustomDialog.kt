@@ -18,7 +18,7 @@ class CustomDialog {
     private fun showDialog(
         context: Context,
         view: View
-    ){
+    ) {
         if (isShowing()) return
         dialog = Dialog(context, R.style.AlertDialogTheme)
         dialog?.apply {
@@ -29,10 +29,20 @@ class CustomDialog {
         }
     }
 
-    fun showSuccessCreateAccount(context: Context, listener: () -> Unit){
-        val binding = DialogSuccessCreateAccountBinding.inflate(LayoutInflater.from(context), null, false)
-        showDialog(context, binding.root)
-        binding.btnNext.setOnClickListener { listener() }
+    fun showSuccessCreateAccount(context: Context, listener: () -> Unit) {
+        val binding =
+            DialogSuccessCreateAccountBinding.inflate(LayoutInflater.from(context), null, false)
+        dialog = Dialog(context, R.style.AlertDialogTheme)
+        dialog?.apply {
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setCanceledOnTouchOutside(false)
+            setContentView(binding.root)
+            show()
+        }
+        binding.btnNext.setOnClickListener {
+            listener()
+            dialog!!.dismiss()
+        }
     }
 
 }

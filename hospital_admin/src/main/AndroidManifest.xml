@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.project.hospital_admin">
 
     <dist:module
@@ -16,7 +17,17 @@
     <application>
         <activity
             android:name=".MainHospitalAdminActivity"
-            android:exported="false" />
+            android:exported="true" />
+        <receiver
+            android:name=".norification.ReceiveRegistrationService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class Registration(
     var id: String? = null,
     var idUser: String? = null,
-    var photUrl: String? = null,
+    var photoUrl: String? = null,
     var registrationNumber: String? = null,
     var registrationDate: String? = null,
     var acceptDate: String? = null,
@@ -20,5 +20,6 @@ data class Registration(
     var note: String? = null,
     var statusRegistration: String? = WAIT,
     var queue: Int? = 0,
-    var typeActivities: String? = null
+    var typeActivities: String? = null,
+    var isShowNotif: Boolean? = false
 ) : Parcelable

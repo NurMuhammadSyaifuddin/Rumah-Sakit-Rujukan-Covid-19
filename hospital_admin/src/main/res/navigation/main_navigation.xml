@@ -10,10 +10,7 @@
         android:name="com.project.hospital_admin.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.project.chat_admin.ChatFragment"
-        android:label="ChatFragment" />
+
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.project.profile_admin.ProfileAdminFragment"

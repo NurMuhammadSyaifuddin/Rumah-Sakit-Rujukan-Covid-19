@@ -12,11 +12,6 @@
         android:icon="@drawable/ic_activity"/>
 
     <item
-        android:id="@+id/navigation_chat"
-        android:title="@string/chat"
-        android:icon="@drawable/ic_chat"/>
-
-    <item
         android:id="@+id/navigation_bookmark"
         android:title="@string/bookmark"
         android:icon="@drawable/ic_bookmark"/>

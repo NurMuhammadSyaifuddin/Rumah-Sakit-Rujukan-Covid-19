@@ -20,7 +20,7 @@
         <receiver
             android:name="com.project.activity_user.notification.EventAfterOneDayRegistration"
             android:enabled="true"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>

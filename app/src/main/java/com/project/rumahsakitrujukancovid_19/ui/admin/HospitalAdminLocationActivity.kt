@@ -36,7 +36,6 @@ class HospitalAdminLocationActivity : AppCompatActivity() {
         loading = showAlertLoading(this)
 
         setItemHospital()
-
         signInAdmin()
     }
 
@@ -45,7 +44,7 @@ class HospitalAdminLocationActivity : AppCompatActivity() {
         binding.apply {
 
             intent?.let {
-                val admin = it.extras?.getSerializable(EXTRA_DATA) as HashMap<*, *>
+                val admin = it.extras?.getSerializable(EXTRA_DATA) as HashMap<String, String>
                 val email = it.extras?.getString(EXTRA_EMAIL)
                 val password = it.extras?.getString(EXTRA_PASSWORD)
 
@@ -56,7 +55,7 @@ class HospitalAdminLocationActivity : AppCompatActivity() {
         }
     }
 
-    private fun processedAccount(admin: HashMap<*, *>, email: String, password: String) {
+    private fun processedAccount(admin: HashMap<String, String>, email: String, password: String) {
         binding.apply {
             hideSoftKeyboard(this@HospitalAdminLocationActivity, binding.root)
             loading.show()
@@ -64,7 +63,10 @@ class HospitalAdminLocationActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            viewModel.setCollectionUser(db, auth.currentUser?.uid.toString())
+
+                            admin["id"] = auth.currentUser?.uid.toString()
+
+                            viewModel.setCollectionUser(db, admin["id"].toString())
                                 .set(admin)
                             viewModel.saveLevelUser(HOSPITAL_ADMIN)
 
