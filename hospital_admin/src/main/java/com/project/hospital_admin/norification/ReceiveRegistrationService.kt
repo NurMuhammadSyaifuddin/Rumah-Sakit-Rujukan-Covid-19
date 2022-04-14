@@ -64,25 +64,11 @@ class ReceiveRegistrationService: BroadcastReceiver() {
     }
 
     private fun showNotification(context: Context, index: Int, registrations: List<Registration?>) {
-        val intentToDetailRegistration = Intent(
-            context,
-            Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
-        ).also {
-            it.putExtra(EXTRA_DATA_FOR_REGISTRATION, registrations[index])
-        }
-
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            0,
-            intentToDetailRegistration,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
@@ -118,6 +104,41 @@ class ReceiveRegistrationService: BroadcastReceiver() {
 
         val notification = builder.build()
         notificationManager.notify(NOTIFICATION_ID + getRandomIntSingle(), notification)
+
+        setNotificationIsShow(index, registrations)
+    }
+
+    private fun setNotificationIsShow(index: Int, registrations: List<Registration?>) {
+        db.collection(PATH_USER)
+            .get()
+            .addOnSuccessListener { query ->
+                val user = query.documents.asSequence()
+                    .map {
+                        it.toObject(User::class.java)
+                    }
+                    .filter {
+                        it?.id == auth.currentUser?.uid.toString() && it.status == HOSPITAL_ADMIN
+                    }
+                    .take(1)
+                    .toList()
+
+                if (user.isNotEmpty()){
+                    val registration = registrations[index]
+                    db.collection(PATH_REGISTRATION).document(PATH_USER)
+                        .collection(registration?.idUser.toString())
+                        .document(registration?.registrationNumber.toString())
+                        .update(
+                            "isShowNotif", true
+                        )
+
+                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN)
+                        .collection(user[0]?.email.toString())
+                        .document(registration?.registrationNumber.toString())
+                        .update(
+                            "isShowNotif", true
+                        )
+                }
+            }
     }
 
     @SuppressLint("InlinedApi")

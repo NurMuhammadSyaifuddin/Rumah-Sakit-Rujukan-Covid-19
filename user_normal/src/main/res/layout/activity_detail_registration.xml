@@ -322,15 +322,49 @@
                 android:layout_marginStart="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_16"
+                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="textEnd"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toTopOf="@id/tv_referred_to"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_accept_date"
+                tools:text="Nur Muhammad Syaifuddin" />
+
+            <TextView
+                android:id="@+id/text_view_referred_to"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_8"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/referred_to"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tv_referred_to"
+                app:layout_constraintEnd_toEndOf="@id/guidline_vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_referred_to" />
+
+            <TextView
+                android:id="@+id/tv_referred_to"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_16"
                 android:layout_marginBottom="@dimen/dp_32"
                 android:fontFamily="@font/poppins_regular"
                 android:textAlignment="textEnd"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/sp_12"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guidline_vertical"
-                app:layout_constraintTop_toBottomOf="@id/tv_accept_date"
+                app:layout_constraintTop_toBottomOf="@id/tv_admin_notes"
                 tools:text="Nur Muhammad Syaifuddin" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

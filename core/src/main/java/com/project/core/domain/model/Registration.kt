@@ -21,5 +21,6 @@ data class Registration(
     var statusRegistration: String? = WAIT,
     var queue: Int? = 0,
     var typeActivities: String? = null,
-    var isShowNotif: Boolean? = false
+    var isShowNotif: Boolean? = false,
+    var referredTo: String? = null
 ) : Parcelable

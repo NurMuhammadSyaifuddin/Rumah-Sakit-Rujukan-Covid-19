@@ -34,6 +34,7 @@ class DetailRegistrationActivity : AppCompatActivity() {
                     if (data?.acceptDate.isNullOrBlank()) getString(R.string.default_text) else data?.acceptDate.toString()
                 tvAdminNotes.text =
                     if (data?.note.isNullOrBlank()) getString(R.string.default_text) else data?.note.toString()
+                tvReferredTo.text = data?.referredTo.toString()
             }
 
             btnOk.setOnClickListener {

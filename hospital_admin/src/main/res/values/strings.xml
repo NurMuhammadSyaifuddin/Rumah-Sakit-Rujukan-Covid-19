@@ -9,4 +9,5 @@
     <string name="you_don_t_have_a_list_of_activities">You don\'t have a list of activities</string>
     <string name="new_registration">New Registration</string>
     <string name="new_registration_from_user">New registration from %s</string>
+    <string name="hospital">Hospital</string>
 </resources>

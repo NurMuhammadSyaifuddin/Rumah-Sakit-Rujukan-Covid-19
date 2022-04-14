@@ -19,6 +19,16 @@
             <CustomAttribute
                 app:attributeName="colorFilter"
                 app:customColorValue="@android:color/transparent"/>
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/progress_bar">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
         </Constraint>
 
     </ConstraintSet>
@@ -26,16 +36,26 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/nested_scroll_view"
-            app:layout_constraintTop_toBottomOf="@+id/img_back"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/app_bar"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <Constraint
             android:id="@+id/img_poster">
             <CustomAttribute
                 app:attributeName="colorFilter"
                 app:customColorValue="@color/white"/>
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/progress_bar">
+            <PropertySet
+                app:applyMotionScene="false"
+                app:visibilityMode="ignore" />
         </Constraint>
 
     </ConstraintSet>

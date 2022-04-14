@@ -18,6 +18,9 @@
 
     <application>
         <activity
+            android:name=".ui.registration.ChooseDateForRegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.registration.DetailRegistrationActivity"
             android:exported="false" />
         <activity

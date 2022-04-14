@@ -31,7 +31,8 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
         val hospital = intent.extras?.getParcelable<Hospital>(EXTRA_DATA_HOSPITAL)
         val registration = intent.extras?.getParcelable<Registration>(EXTRA_DATA_REGISTRATION)
 
-        db.collection(PATH_REGISTRATION).document(PATH_USER).collection(registration?.idUser.toString())
+        db.collection(PATH_REGISTRATION).document(PATH_USER)
+            .collection(registration?.idUser.toString())
             .get()
             .addOnSuccessListener { query ->
                 val data = query.documents.asSequence()
@@ -44,29 +45,25 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                     .take(1)
                     .toList()
 
-                if (data.isNotEmpty()){
-                    val registrationMap = hashMapOf(
-                        "id" to registration?.id,
-                        "idUser" to registration?.idUser,
-                        "photoUrl" to registration?.photoUrl,
-                        "registrationNumber" to registration?.registrationNumber,
-                        "registrationDate" to registration?.registrationDate,
-                        "name" to registration?.name,
-                        "hospitalName" to registration?.hospitalName,
-                        "imageUrl" to registration?.imageUrl,
-                        "acceptDate" to "",
-                        "statusRegistration" to REJECT,
-                        "note" to context.getString(R.string.reject_by_system),
-                        "queue" to 0,
-                        "typeActivities" to context.getString(R.string.registration),
-                        "isShowNotif" to false
-                    )
+                if (data.isNotEmpty()) {
 
-                    db.collection(PATH_REGISTRATION).document(PATH_USER).collection(registration?.idUser.toString()).document(registration?.registrationNumber.toString())
-                        .set(registrationMap)
+                    db.collection(PATH_REGISTRATION).document(PATH_USER)
+                        .collection(registration?.idUser.toString())
+                        .document(registration?.registrationNumber.toString())
+                        .update(
+                            "statusRegistration", REJECT,
+                            "note", context.getString(R.string.reject_by_system),
+                            "referredTo", context.getString(R.string.default_text)
+                        )
 
-                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(hospital?.emailAdmin.toString()).document(registration?.registrationNumber.toString())
-                        .set(registrationMap)
+                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN)
+                        .collection(hospital?.emailAdmin.toString())
+                        .document(registration?.registrationNumber.toString())
+                        .update(
+                            "statusRegistration", REJECT,
+                            "note", context.getString(R.string.reject_by_system),
+                            "referredTo", context.getString(R.string.default_text)
+                        )
 
                     val intentToDetailRegistration = Intent(
                         context,
@@ -84,7 +81,8 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
 
                     val notificationManager =
                         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                    val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                    val alarmSound =
+                        RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                         .setContentIntent(pendingIntent)
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -97,10 +95,20 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                                 hospital?.name.toString()
                             )
                         )
-                        .setContentText(context.getString(R.string.desc_otomatic_reject_registration, hospital?.name.toString()))
+                        .setContentText(
+                            context.getString(
+                                R.string.desc_otomatic_reject_registration,
+                                hospital?.name.toString()
+                            )
+                        )
                         .setStyle(
                             NotificationCompat.BigTextStyle()
-                                .bigText(context.getString(R.string.desc_otomatic_reject_registration, hospital?.name.toString()))
+                                .bigText(
+                                    context.getString(
+                                        R.string.desc_otomatic_reject_registration,
+                                        hospital?.name.toString()
+                                    )
+                                )
                         )
                         .setAutoCancel(true)
 
@@ -129,9 +137,15 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
     }
 
     @SuppressLint("InlinedApi")
-    fun setUpAlarmAfterOneDayRegistration(context: Context, hospital: Hospital, registration: Registration){
+    fun setUpAlarmAfterOneDayRegistration(
+        context: Context,
+        hospital: Hospital,
+        registration: Registration
+    ) {
 
-        val date = java.sql.Date.valueOf(LocalDate.now().plusDays(1).toString()).toString().split("-").toTypedArray()
+        val date =
+            java.sql.Date.valueOf(LocalDate.now().plusDays(1).toString()).toString().split("-")
+                .toTypedArray()
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, EventAfterOneDayRegistration::class.java).also {
@@ -148,14 +162,16 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
             set(Calendar.SECOND, 0)
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 
-    fun cancelRepeatingAlarm(context: Context){
+    fun cancelRepeatingAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, EventAfterOneDayRegistration::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
         pendingIntent.cancel()
 
         alarmManager.cancel(pendingIntent)

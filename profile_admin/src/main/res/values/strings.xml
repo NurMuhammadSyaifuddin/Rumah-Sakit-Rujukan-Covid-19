@@ -10,5 +10,5 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="save">Save</string>
     <string name="name_changed_successfully">Name changed Successfully</string>
-    <string name="delete_image_success">Delete image profile is successfull</string>
+    <string name="delete_image_success">Delete image profile is successful</string>
 </resources>

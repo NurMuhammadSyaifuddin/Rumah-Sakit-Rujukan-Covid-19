@@ -15,15 +15,15 @@ abstract class NetworkBoundService<ResultType, RequestType> {
             when (val apiResponse = createCall().first()) {
                 is ApiResponse.Success -> {
                     saveCallResult(apiResponse.data)
-                    emitAll(loadFromDb().map { Resource.Success(it) })
+                    emitAll(loadFromDb().map { Resource.Success(it, apiResponse.snapshot) })
                 }
-                is ApiResponse.Empty -> emitAll(loadFromDb().map { Resource.Success(it) })
+                is ApiResponse.Empty -> emitAll(loadFromDb().map { Resource.Success(it, null) })
                 is ApiResponse.Error -> emit(Resource.Error<ResultType>(apiResponse.errorMessage))
 
             }
 
         } else {
-            emitAll(loadFromDb().map { Resource.Success(it) })
+            emitAll(loadFromDb().map { Resource.Success(it, null) })
         }
     }
 

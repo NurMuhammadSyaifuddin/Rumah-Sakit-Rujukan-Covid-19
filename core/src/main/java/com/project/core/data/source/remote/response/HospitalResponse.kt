@@ -4,38 +4,38 @@ import com.google.gson.annotations.SerializedName
 
 data class HospitalResponse(
     @SerializedName("id")
-    val id: String?,
+    var id: String? = "",
 
     @SerializedName("name")
-    val name: String?,
+    var name: String? = "",
 
     @SerializedName("address")
-    val address: String?,
+    var address: String? = "",
 
     @SerializedName("province")
-    val province: String?,
+    var province: String? = "",
 
     @SerializedName("region")
-    val region: String?,
+    var region: String? = "",
 
     @SerializedName("phone")
-    val phone: String?,
+    var phone: String? = "",
 
     @SerializedName("image_url")
-    val imageUrl: String?,
+    var imageUrl: String? = "",
 
     @SerializedName("website_url")
-    val websiteUrl: String?,
+    var websiteUrl: String? = "",
 
     @SerializedName("latitude")
-    val latitude: Double?,
+    var latitude: Double? = 0.0,
 
     @SerializedName("longitude")
-    val longitude: Double?,
+    var longitude: Double? = 0.0,
 
     @SerializedName("email_admin")
-    val emailAdmin: String?,
+    var emailAdmin: String? = "",
 
     @SerializedName("id_admin")
-    val idAdmin: String?
+    var idAdmin: String? = ""
 )

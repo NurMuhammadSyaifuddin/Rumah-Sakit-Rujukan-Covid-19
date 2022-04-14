@@ -26,7 +26,7 @@ class HospitalRemoteDataSource {
                         val type = object : TypeToken<List<HospitalResponse>>() {}.type
                         val hospitals = Gson().fromJson<List<HospitalResponse>>(json, type)
 
-                        trySendBlocking(ApiResponse.Success(hospitals))
+                        trySendBlocking(ApiResponse.Success(hospitals, snapshot))
 
                     } else {
                         trySendBlocking(ApiResponse.Empty)

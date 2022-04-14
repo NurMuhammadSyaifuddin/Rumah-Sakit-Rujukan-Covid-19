@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_detail_scene">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?attr/progressBarStyle"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <ImageView
         android:id="@+id/img_poster"
         android:layout_width="match_parent"
@@ -59,10 +70,22 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:textColor="@color/textColorPrimaryDark"
                         android:textSize="@dimen/sp_16"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/img_edit_name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Rumah Sakit Umum Daerah Kabupaten Pati" />
+
+                    <ImageView
+                        android:id="@+id/img_edit_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_name"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_name"
+                        app:layout_constraintStart_toEndOf="@id/tv_name"
+                        tools:ignore="ContentDescription" />
 
                     <View
                         android:id="@+id/view_main"
@@ -97,10 +120,22 @@
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/sp_12"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/img_edit_location"
                         app:layout_constraintStart_toEndOf="@id/image_view_location"
                         app:layout_constraintTop_toBottomOf="@id/view_main"
                         tools:text="Jl Jakenan Winong, Desa Sembaturagung, Kec. Jakenan Kab. Pati, Jawa Tengah" />
+
+                    <ImageView
+                        android:id="@+id/img_edit_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_address"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_address"
+                        app:layout_constraintStart_toEndOf="@id/tv_address"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/image_view_website"
@@ -125,10 +160,22 @@
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/sp_12"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/img_edit_website_url"
                         app:layout_constraintStart_toEndOf="@id/image_view_website"
                         app:layout_constraintTop_toBottomOf="@id/tv_address"
                         tools:text="google.com" />
+
+                    <ImageView
+                        android:id="@+id/img_edit_website_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_website_url"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_website_url"
+                        app:layout_constraintStart_toEndOf="@id/tv_website_url"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/image_view_telephone"
@@ -150,7 +197,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_8"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:layout_marginEnd="@dimen/dp_8"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/sp_12"
@@ -166,9 +212,22 @@
                         android:layout_marginStart="@dimen/dp_8"
                         android:layout_marginTop="@dimen/dp_16"
                         android:src="@drawable/ic_copy"
+                        app:layout_constraintStart_toEndOf="@id/tv_telephone"
                         app:layout_constraintBottom_toBottomOf="@id/tv_telephone"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/img_edit_phone"
                         app:layout_constraintTop_toBottomOf="@id/tv_website_url"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:id="@+id/img_edit_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_pencil"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/ic_copy"
+                        app:layout_constraintBottom_toBottomOf="@id/ic_copy"
+                        app:layout_constraintStart_toEndOf="@id/ic_copy"
                         tools:ignore="ContentDescription" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,4 +3,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="maps">Maps</string>
     <string name="start_navigation">Start Navigation</string>
+    <string name="enter_hospital_name">Enter hospital name</string>
+    <string name="save">Save</string>
+    <string name="photo_profile">Hospital Photo</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="name_changed_successfully">Name changed successfully</string>
+    <string name="address_changed_successfully">Address changed successfully</string>
+    <string name="enter_hosptital_address">Enter hospital address</string>
+    <string name="website_url_changed_successfully">Hospital address changed successfully</string>
+    <string name="enter_website_url">Enter website url</string>
+    <string name="phone_changed_successfully">Hospital phone changed successfuly</string>
+    <string name="enter_hospital_phone">Enter hospital phone</string>
+    <string name="phone_is_copied">%s has been copied</string>
+    <string name="label">Phone number copied</string>
+    <string name="hospital_image_updated">Hospital image has been successfully updated</string>
+    <string name="delete_hospital_image_success">Delete hospital image is successful</string>
 </resources>

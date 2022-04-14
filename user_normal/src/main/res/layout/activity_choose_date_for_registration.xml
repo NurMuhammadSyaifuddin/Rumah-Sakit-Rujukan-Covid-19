@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_arrow_back"
+        android:background="@android:color/transparent"
+        app:tint="@color/textColorPrimaryDark"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_referral_date"
+        android:textSize="@dimen/sp_20"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/textColorPrimary"
+        android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_32"
+        app:layout_constraintTop_toBottomOf="@id/img_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_hospital"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        app:hintEnabled="false"
+        app:layout_constraintEnd_toEndOf="@id/text_view_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_title"
+        app:layout_constraintTop_toBottomOf="@id/text_view_title">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/edt_registration_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center_vertical"
+            android:hint="@string/please_select"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.FilledBox"
+            android:inputType="none"
+            android:padding="@dimen/dp_16"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/sp_16"
+            tools:ignore="Autofill" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/bg_btn_green"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/ok"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="@id/text_input_hospital"
+        app:layout_constraintStart_toStartOf="@id/text_input_hospital"
+        app:layout_constraintTop_toBottomOf="@id/text_input_hospital" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,6 @@ dependencies {
     implementation project (":app")
     implementation project (":core")
     implementation project (":activity_user")
-    implementation project (":chat_user")
     implementation project (":bookmark_user")
     implementation project (":profile_user")
     implementation 'androidx.appcompat:appcompat:1.4.1'

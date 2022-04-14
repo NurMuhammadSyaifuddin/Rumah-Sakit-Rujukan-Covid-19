@@ -27,7 +27,9 @@ android {
 dependencies {
     implementation project (":app")
     implementation project (":core")
-    implementation project (":chat_admin")
     implementation project (":profile_admin")
     implementation project (":profile_hospital")
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 }

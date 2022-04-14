@@ -10,4 +10,5 @@
     <string name="registration">Registration</string>
     <string name="getting_new_registration">New Registration from %s</string>
     <string name="desc_getting_new_registration">Immediately confirm registration from %s before 00:00 WIB</string>
+    <string name="default_text">-</string>
 </resources>
