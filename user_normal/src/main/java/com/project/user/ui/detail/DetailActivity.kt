@@ -154,7 +154,10 @@ class DetailActivity : AppCompatActivity() {
                             }
                         }
                     }else{
-                        showToast(getString(R.string.only_weekdays_to_registration))
+                        showAlertDialogAlreadyRegistered(
+                            this@DetailActivity,
+                            getString(R.string.only_weekdays_to_registration)
+                        ).show()
                     }
 
                 }

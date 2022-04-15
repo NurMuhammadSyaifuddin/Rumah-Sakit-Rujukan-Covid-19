@@ -16,6 +16,7 @@ import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
 import com.project.hospital_admin.databinding.FragmentHomeBinding
 import com.project.hospital_admin.di.registrationModule
 import com.project.hospital_admin.norification.ReceiveRegistrationService
+import com.project.hospital_admin.ui.registration.CheckingRegistrationActivity
 import com.project.rumahsakitrujukancovid_19.utils.gone
 import com.project.rumahsakitrujukancovid_19.utils.visible
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -58,7 +59,7 @@ class HomeFragment : Fragment() {
             onClick {
                 Intent(
                     activity,
-                    Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
+                    CheckingRegistrationActivity::class.java
                 ).also { intent ->
                     intent.putExtra(EXTRA_DATA_FOR_REGISTRATION, it)
                     startActivity(intent)

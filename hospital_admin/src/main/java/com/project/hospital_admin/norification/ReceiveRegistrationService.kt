@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -22,7 +23,7 @@ import com.project.rumahsakitrujukancovid_19.utils.HOSPITAL_ADMIN
 import com.project.rumahsakitrujukancovid_19.utils.PATH_USER
 import java.util.*
 
-class ReceiveRegistrationService: BroadcastReceiver() {
+class ReceiveRegistrationService : BroadcastReceiver() {
 
     private val db by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
@@ -42,8 +43,9 @@ class ReceiveRegistrationService: BroadcastReceiver() {
                     .take(1)
                     .toList()
 
-                if (user.isNotEmpty()){
-                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(user[0]?.email.toString())
+                if (user.isNotEmpty()) {
+                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN)
+                        .collection(user[0]?.email.toString())
                         .get()
                         .addOnSuccessListener { queryAdmin ->
                             val registrations = queryAdmin.documents
@@ -51,11 +53,13 @@ class ReceiveRegistrationService: BroadcastReceiver() {
                                     it.toObject(Registration::class.java)
                                 }
                                 .filter {
-                                    it?.statusRegistration == WAIT && !it.isShowNotif!!
+                                    it?.statusRegistration == WAIT && !it.isShowNotif
                                 }
 
-                            for (index in registrations.indices){
-                                showNotification(context as Context, index, registrations)
+                            if (registrations.isNotEmpty()) {
+                                for (index in registrations.indices) {
+                                    showNotification(context as Context, index, registrations)
+                                }
                             }
 
                         }
@@ -78,10 +82,20 @@ class ReceiveRegistrationService: BroadcastReceiver() {
                     R.string.new_registration
                 )
             )
-            .setContentText(context.getString(R.string.new_registration_from_user, registrations[index]?.name.toString()))
+            .setContentText(
+                context.getString(
+                    R.string.new_registration_from_user,
+                    registrations[index]?.name.toString()
+                )
+            )
             .setStyle(
                 NotificationCompat.BigTextStyle()
-                    .bigText(context.getString(R.string.new_registration_from_user, registrations[index]?.name.toString()))
+                    .bigText(
+                        context.getString(
+                            R.string.new_registration_from_user,
+                            registrations[index]?.name.toString()
+                        )
+                    )
             )
             .setAutoCancel(true)
 
@@ -122,7 +136,7 @@ class ReceiveRegistrationService: BroadcastReceiver() {
                     .take(1)
                     .toList()
 
-                if (user.isNotEmpty()){
+                if (user.isNotEmpty()) {
                     val registration = registrations[index]
                     db.collection(PATH_REGISTRATION).document(PATH_USER)
                         .collection(registration?.idUser.toString())
@@ -142,7 +156,7 @@ class ReceiveRegistrationService: BroadcastReceiver() {
     }
 
     @SuppressLint("InlinedApi")
-    fun setUpRepeatingAlarm(context: Context){
+    fun setUpRepeatingAlarm(context: Context) {
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReceiveRegistrationService::class.java)
@@ -150,7 +164,8 @@ class ReceiveRegistrationService: BroadcastReceiver() {
         val date = getCurrentTime()
 
         val dateTime = date.split(" ").toTypedArray()
-        val timeArray = dateTime[1].split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val timeArray =
+            dateTime[1].split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         val calendar = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
@@ -158,14 +173,21 @@ class ReceiveRegistrationService: BroadcastReceiver() {
             set(Calendar.SECOND, Integer.parseInt(timeArray[2]))
         }
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_IMMUTABLE)
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, 1000, pendingIntent)
+        val pendingIntent =
+            PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_IMMUTABLE)
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000,
+            pendingIntent
+        )
     }
 
-    fun cancelRepeatingAlarm(context: Context){
+    fun cancelRepeatingAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReceiveRegistrationService::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_IMMUTABLE)
         pendingIntent.cancel()
 
         alarmManager.cancel(pendingIntent)

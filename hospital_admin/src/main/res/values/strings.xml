@@ -10,4 +10,10 @@
     <string name="new_registration">New Registration</string>
     <string name="new_registration_from_user">New registration from %s</string>
     <string name="hospital">Hospital</string>
+    <string name="write_your_notes_to_prospective_patients_optional">Write your notes to prospective patients (optional)</string>
+    <string name="note_optional">note: (optional)</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="character_s_100">Character %s / 100</string>
+    <string name="note_max_100_char">Note the maximum is only 100 characters</string>
 </resources>
