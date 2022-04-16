@@ -13,22 +13,6 @@ class CustomDialog {
 
     private var dialog: Dialog? = null
 
-    private fun isShowing(): Boolean = dialog?.isShowing ?: false
-
-    private fun showDialog(
-        context: Context,
-        view: View
-    ) {
-        if (isShowing()) return
-        dialog = Dialog(context, R.style.AlertDialogTheme)
-        dialog?.apply {
-            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setCanceledOnTouchOutside(false)
-            setContentView(view)
-            show()
-        }
-    }
-
     fun showSuccessCreateAccount(context: Context, listener: () -> Unit) {
         val binding =
             DialogSuccessCreateAccountBinding.inflate(LayoutInflater.from(context), null, false)

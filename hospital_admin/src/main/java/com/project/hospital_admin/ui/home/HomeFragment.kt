@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
+import com.project.core.utils.WAIT
 import com.project.hospital_admin.databinding.FragmentHomeBinding
 import com.project.hospital_admin.di.registrationModule
 import com.project.hospital_admin.norification.ReceiveRegistrationService
@@ -57,12 +57,23 @@ class HomeFragment : Fragment() {
         alarmReceiver = ReceiveRegistrationService()
         activityAdminAdapter = ActivityAdminAdapter().apply {
             onClick {
-                Intent(
-                    activity,
-                    CheckingRegistrationActivity::class.java
-                ).also { intent ->
-                    intent.putExtra(EXTRA_DATA_FOR_REGISTRATION, it)
-                    startActivity(intent)
+
+                if (it.statusRegistration == WAIT) {
+                    Intent(
+                        activity,
+                        CheckingRegistrationActivity::class.java
+                    ).also { intent ->
+                        intent.putExtra(CheckingRegistrationActivity.EXTRA_DATA, it)
+                        startActivity(intent)
+                    }
+                } else {
+                    Intent(
+                        activity,
+                        Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
+                    ).also { intent ->
+                        intent.putExtra(EXTRA_DATA_FOR_REGISTRATION, it)
+                        startActivity(intent)
+                    }
                 }
             }
         }
@@ -100,11 +111,12 @@ class HomeFragment : Fragment() {
                                         it?.registrationDate
                                     }
 
-                                if (dataRegister.isNullOrEmpty()){
+                                if (dataRegister.isNullOrEmpty()) {
                                     showEmptyActivity(true)
-                                }else{
+                                } else {
                                     showEmptyActivity(false)
-                                    activityAdminAdapter.registration = dataRegister as MutableList<Registration>
+                                    activityAdminAdapter.registration =
+                                        dataRegister as MutableList<Registration>
                                     rvActivities.adapter = activityAdminAdapter
                                     rvActivities.setHasFixedSize(true)
                                 }

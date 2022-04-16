@@ -14,6 +14,13 @@
     <string name="note_optional">note: (optional)</string>
     <string name="reject">Reject</string>
     <string name="accept">Accept</string>
-    <string name="character_s_100">Character %s / 100</string>
+    <string name="character_s_100">Character %s / 50</string>
     <string name="note_max_100_char">Note the maximum is only 100 characters</string>
+    <string name="status_registration">Registration %s</string>
+    <string name="status_registration_content">Registration from %s has been %s, with registration number %s</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="default_text">-</string>
+    <string name="are_you_sure_reject_this_registration">Are you sure you refuse this registration?</string>
+    <string name="will_you_acceot_this_registration">Will you accept this registration?</string>
 </resources>

@@ -121,24 +121,40 @@ class DetailActivity : AppCompatActivity() {
                                                         value.toObject(Registration::class.java)
                                                     }
                                                     .filter { value ->
-                                                        value?.idUser == idUser && value.hospitalName == hospitalName && value.statusRegistration == WAIT
+                                                        val date = value?.registrationDate?.split(" ")?.toTypedArray()
+                                                        val dateArray = date?.get(0).toString()
+                                                        value?.idUser == idUser && value.hospitalName == hospitalName && value.statusRegistration != REJECT && isCurrentTimeTheSame(dateArray)
                                                     }
                                                     .take(1)
                                                     .toList()
 
                                                 if (data.isNotEmpty()) {
                                                     loading.dismiss()
-                                                    showAlertDialogAlreadyRegistered(
-                                                        this@DetailActivity,
-                                                        getString(
+
+                                                    val message =
+                                                        if (data[0]?.statusRegistration == WAIT) getString(
                                                             R.string.signed_up_today,
                                                             hospitalName
                                                         )
+                                                        else getString(R.string.signed_up_today_accept)
+
+                                                    showAlertDialogAlreadyRegistered(
+                                                        this@DetailActivity,
+                                                        message
                                                     ).show()
                                                 } else {
-                                                    Intent(this@DetailActivity, ChooseDateForRegistrationActivity::class.java).also { intent ->
-                                                        intent.putExtra(ChooseDateForRegistrationActivity.EXTRA_DATA_HOSPITAL, hospital)
-                                                        intent.putExtra(ChooseDateForRegistrationActivity.EXTRA_DATA_USER, user)
+                                                    Intent(
+                                                        this@DetailActivity,
+                                                        ChooseDateForRegistrationActivity::class.java
+                                                    ).also { intent ->
+                                                        intent.putExtra(
+                                                            ChooseDateForRegistrationActivity.EXTRA_DATA_HOSPITAL,
+                                                            hospital
+                                                        )
+                                                        intent.putExtra(
+                                                            ChooseDateForRegistrationActivity.EXTRA_DATA_USER,
+                                                            user
+                                                        )
                                                         startActivity(intent)
                                                         loading.dismiss()
                                                     }
@@ -153,7 +169,7 @@ class DetailActivity : AppCompatActivity() {
                                 Timber.e(e.message.toString())
                             }
                         }
-                    }else{
+                    } else {
                         showAlertDialogAlreadyRegistered(
                             this@DetailActivity,
                             getString(R.string.only_weekdays_to_registration)
@@ -164,7 +180,6 @@ class DetailActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     private fun getStatusBookmark(hospital: Hospital) {

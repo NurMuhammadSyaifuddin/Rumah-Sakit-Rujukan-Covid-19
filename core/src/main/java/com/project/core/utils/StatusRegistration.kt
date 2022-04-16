@@ -32,3 +32,9 @@ fun getRandomIntSingle(): Int =
 
 fun getCurrentTime(): String =
     SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
+
+fun getCurrentTimeToGetQueue(): String =
+    SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+
+fun isCurrentTimeTheSame(currentTime: String): Boolean =
+    currentTime == getCurrentTimeToGetQueue()
