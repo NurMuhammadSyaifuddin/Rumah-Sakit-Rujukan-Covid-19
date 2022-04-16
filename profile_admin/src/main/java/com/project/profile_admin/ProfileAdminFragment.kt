@@ -1,6 +1,7 @@
 package com.project.profile_admin
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -20,6 +21,7 @@ import com.project.profile_admin.databinding.FragmentProfileAdminBinding
 import com.project.profile_admin.di.profileAdminModule
 import com.project.profile_admin.utils.showAlertDialogEditName
 import com.project.profile_admin.utils.showBottomSheetDialogEditImage
+import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginActivity
 import com.project.rumahsakitrujukancovid_19.utils.loadImage
 import com.project.rumahsakitrujukancovid_19.utils.showToast
@@ -39,6 +41,8 @@ class ProfileAdminFragment : Fragment() {
     private val db by lazy { FirebaseFirestore.getInstance() }
 
     private val viewModel: ProfileAdminViewModel by viewModel()
+
+    private lateinit var alarmReceiver: ReceiveRegistrationService
 
     private val launchCamera =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -133,6 +137,9 @@ class ProfileAdminFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadKoinModules(profileAdminModule)
 
+        // init
+        alarmReceiver = ReceiveRegistrationService()
+
         onAction()
     }
 
@@ -146,6 +153,7 @@ class ProfileAdminFragment : Fragment() {
                     startActivity(intent)
                     activity?.finishAffinity()
                 }
+                alarmReceiver.cancelRepeatingAlarm(activity?.applicationContext as Context)
             }
 
             btnEditName.setOnClickListener {
@@ -221,8 +229,8 @@ class ProfileAdminFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         unloadKoinModules(profileAdminModule)
         _binding = null
     }

@@ -21,6 +21,6 @@
     <string name="approved">Approved</string>
     <string name="rejected">Rejected</string>
     <string name="default_text">-</string>
-    <string name="are_you_sure_reject_this_registration">Are you sure you refuse this registration?</string>
+    <string name="are_you_sure_reject_this_registration">Are you sure you rejected this registration?</string>
     <string name="will_you_acceot_this_registration">Will you accept this registration?</string>
 </resources>

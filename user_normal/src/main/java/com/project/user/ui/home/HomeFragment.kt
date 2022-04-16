@@ -1,5 +1,6 @@
 package com.project.user.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.project.core.domain.model.Hospital
 import com.project.core.domain.model.User
 import com.project.core.ui.HospitalAdapter
 import com.project.core.utils.loadImage
+import com.project.rumahsakitrujukancovid_19.notification.ReceiveResultCheckingActivityService
 import com.project.rumahsakitrujukancovid_19.utils.EXTRA_DATA_FOR_DETAIL
 import com.project.user.R
 import com.project.rumahsakitrujukancovid_19.utils.gone
@@ -42,6 +44,8 @@ class HomeFragment : Fragment() {
     private val ref by lazy { FirebaseStorage.getInstance().reference }
     private val viewModel: HomeViewModel by viewModel()
 
+    private lateinit var alarmReceiver: ReceiveResultCheckingActivityService
+
     private lateinit var hospitalAdapter: HospitalAdapter
 
     private lateinit var database: DatabaseReference
@@ -52,7 +56,7 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        if (_binding != null){
+        if (_binding != null) {
             binding = _binding as FragmentHomeBinding
         }
         return binding.root
@@ -67,6 +71,7 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance().getReference("hospitals")
 
         // init
+        alarmReceiver = ReceiveResultCheckingActivityService()
         hospitalAdapter = HospitalAdapter().apply {
             onClick {
                 Intent(activity, DetailActivity::class.java).also { intent ->
@@ -76,12 +81,15 @@ class HomeFragment : Fragment() {
             }
         }
 
+        alarmReceiver.setUpRepeatingAlarm(activity?.applicationContext as Context)
+
         if (activity != null) {
             getHospital()
 
             getUser()
 
             getSearchHospital()
+
         }
 
     }

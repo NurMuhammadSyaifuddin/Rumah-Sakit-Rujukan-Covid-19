@@ -80,7 +80,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                     ) {
                         loading.show()
                         processedRegistration(registration, REJECT)
-                    }
+                    }.show()
                 }
 
                 btnAccept.setOnClickListener {
@@ -91,8 +91,10 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                     ) {
                         loading.show()
                         processedRegistration(registration, ACCEPT)
-                    }
+                    }.show()
                 }
+
+                imgBack.setOnClickListener { finish() }
 
             }
 
@@ -226,13 +228,24 @@ class CheckingRegistrationActivity : AppCompatActivity() {
         val titleStatusRegistration =
             if (statusRegistration == ACCEPT) getString(R.string.approved) else getString(R.string.rejected)
 
-        showNotification(intent, titleStatusRegistration, registration)
+        showNotification(titleStatusRegistration, registration)
 
     }
 
-    private fun showNotification(intent: Intent, title: String, registration: Registration?) {
-        val pendingIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    private fun showNotification(title: String, registration: Registration?) {
+        val intentToDetailRegistration = Intent(
+            this,
+            Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
+        ).also {
+            it.putExtra(EXTRA_DATA_FOR_REGISTRATION, registration)
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intentToDetailRegistration,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -247,7 +260,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                 .setContentText(
                     getString(
                         R.string.status_registration_content,
-                        registration?.hospitalName.toString(),
+                        registration?.name.toString(),
                         title,
                         registration?.registrationNumber.toString()
                     )
@@ -257,7 +270,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         .bigText(
                             getString(
                                 R.string.status_registration_content,
-                                registration?.hospitalName.toString(),
+                                registration?.name.toString(),
                                 title,
                                 registration?.registrationNumber.toString()
                             )

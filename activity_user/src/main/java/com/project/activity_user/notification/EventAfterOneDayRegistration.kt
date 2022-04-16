@@ -1,10 +1,7 @@
 package com.project.activity_user.notification
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -110,6 +107,8 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                                     )
                                 )
                         )
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setAutoCancel(true)
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -163,7 +162,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
         }
 
         val pendingIntent =
-            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_MUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 
@@ -171,7 +170,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, EventAfterOneDayRegistration::class.java)
         val pendingIntent =
-            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         pendingIntent.cancel()
 
         alarmManager.cancel(pendingIntent)

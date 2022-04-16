@@ -1,4 +1,4 @@
-package com.project.hospital_admin.norification
+package com.project.rumahsakitrujukancovid_19.notification
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -14,8 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.core.utils.*
-import com.project.hospital_admin.R
-import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
+import com.project.rumahsakitrujukancovid_19.R
 import com.project.rumahsakitrujukancovid_19.utils.HOSPITAL_ADMIN
 import com.project.rumahsakitrujukancovid_19.utils.PATH_USER
 import java.util.*
@@ -66,10 +65,25 @@ class ReceiveRegistrationService : BroadcastReceiver() {
 
     private fun showNotification(context: Context, index: Int, registrations: List<Registration?>) {
 
+        val intentToDetailRegistration = Intent(
+            context,
+            Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
+        ).also {
+            it.putExtra(EXTRA_DATA_FOR_REGISTRATION, registrations[index])
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            intentToDetailRegistration,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))

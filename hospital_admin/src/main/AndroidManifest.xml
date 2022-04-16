@@ -23,7 +23,7 @@
             android:exported="true" />
 
         <receiver
-            android:name=".norification.ReceiveRegistrationService"
+            android:name="com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

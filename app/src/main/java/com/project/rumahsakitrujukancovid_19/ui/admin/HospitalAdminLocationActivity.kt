@@ -51,6 +51,8 @@ class HospitalAdminLocationActivity : AppCompatActivity() {
                 btnNext.setOnClickListener {
                     processedAccount(admin, email.toString(), password.toString())
                 }
+
+                imgBack.setOnClickListener { finish() }
             }
         }
     }

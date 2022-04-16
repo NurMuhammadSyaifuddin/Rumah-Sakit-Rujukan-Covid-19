@@ -1,4 +1,4 @@
-package com.project.hospital_admin.norification
+package com.project.rumahsakitrujukancovid_19.notification
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -12,86 +12,88 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.project.core.domain.model.Registration
-import com.project.core.domain.model.User
 import com.project.core.utils.*
-import com.project.hospital_admin.R
-import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
-import com.project.rumahsakitrujukancovid_19.utils.HOSPITAL_ADMIN
+import com.project.rumahsakitrujukancovid_19.R
 import com.project.rumahsakitrujukancovid_19.utils.PATH_USER
 import java.util.*
 
-class ReceiveRegistrationService : BroadcastReceiver() {
+class ReceiveResultCheckingActivityService : BroadcastReceiver() {
 
     private val db by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-
-        db.collection(PATH_USER)
+        db.collection(PATH_REGISTRATION).document(PATH_USER)
+            .collection(auth.currentUser?.uid.toString())
             .get()
-            .addOnSuccessListener { query ->
-                val user = query.documents.asSequence()
+            .addOnSuccessListener { queryUser ->
+                val registrations = queryUser.documents
                     .map {
-                        it.toObject(User::class.java)
+                        it.toObject(Registration::class.java)
                     }
                     .filter {
-                        it?.id == auth.currentUser?.uid.toString() && it.status == HOSPITAL_ADMIN
+                        it?.statusRegistration != WAIT && !it?.isShowNotif!!
                     }
-                    .take(1)
-                    .toList()
 
-                if (user.isNotEmpty()) {
-                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN)
-                        .collection(user[0]?.email.toString())
-                        .get()
-                        .addOnSuccessListener { queryAdmin ->
-                            val registrations = queryAdmin.documents
-                                .map {
-                                    it.toObject(Registration::class.java)
-                                }
-                                .filter {
-                                    it?.statusRegistration == WAIT && !it.isShowNotif
-                                }
-
-                            if (registrations.isNotEmpty()) {
-                                for (index in registrations.indices) {
-                                    showNotification(context as Context, index, registrations)
-                                }
-                            }
-
-                        }
+                if (registrations.isNotEmpty()) {
+                    for (index in registrations.indices) {
+                        showNotification(context as Context, index, registrations)
+                    }
                 }
+
             }
     }
 
     private fun showNotification(context: Context, index: Int, registrations: List<Registration?>) {
 
+        val registration = registrations[index]
+
+        val intentToDetailRegistration = Intent(
+            context,
+            Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
+        ).also {
+            it.putExtra(EXTRA_DATA_FOR_REGISTRATION, registration)
+        }
+
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            intentToDetailRegistration,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val title =
+            if (registration?.statusRegistration == ACCEPT) context.getString(R.string.registration_successful)
+            else context.getString(R.string.registration_rejected)
+
+        val desc = if (registration?.statusRegistration == ACCEPT) context.getString(
+            R.string.registration_accept_by_admin,
+            registration.hospitalName.toString()
+        )
+        else context.getString(
+            R.string.registration_rejected_by_admin,
+            registration?.hospitalName.toString()
+        )
+
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
             .setSound(alarmSound)
             .setContentTitle(
-                context.getString(
-                    R.string.new_registration
-                )
+                title
             )
             .setContentText(
-                context.getString(
-                    R.string.new_registration_from_user,
-                    registrations[index]?.name.toString()
-                )
+                desc
             )
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(
-                        context.getString(
-                            R.string.new_registration_from_user,
-                            registrations[index]?.name.toString()
-                        )
+                        desc
                     )
             )
             .setDefaults(Notification.DEFAULT_ALL)
@@ -122,37 +124,24 @@ class ReceiveRegistrationService : BroadcastReceiver() {
     }
 
     private fun setNotificationIsShow(index: Int, registrations: List<Registration?>) {
-        db.collection(PATH_USER)
-            .get()
-            .addOnSuccessListener { query ->
-                val user = query.documents.asSequence()
-                    .map {
-                        it.toObject(User::class.java)
-                    }
-                    .filter {
-                        it?.id == auth.currentUser?.uid.toString() && it.status == HOSPITAL_ADMIN
-                    }
-                    .take(1)
-                    .toList()
 
-                if (user.isNotEmpty()) {
-                    val registration = registrations[index]
+        val registration = registrations[index]
 
-                    db.collection(PATH_REGISTRATION).document(PATH_ADMIN)
-                        .collection(user[0]?.email.toString())
-                        .document(registration?.registrationNumber.toString())
-                        .update(
-                            "isShowNotif", true
-                        )
-                }
-            }
+        db.collection(PATH_REGISTRATION).document(PATH_USER)
+            .collection(auth.currentUser?.uid.toString())
+            .document(registration?.registrationNumber.toString())
+            .update(
+                "isShowNotif", true
+            )
+
     }
+
 
     @SuppressLint("InlinedApi")
     fun setUpRepeatingAlarm(context: Context) {
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, ReceiveRegistrationService::class.java)
+        val intent = Intent(context, ReceiveResultCheckingActivityService::class.java)
 
         val date = getCurrentTime()
 
@@ -178,7 +167,7 @@ class ReceiveRegistrationService : BroadcastReceiver() {
 
     fun cancelRepeatingAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, ReceiveRegistrationService::class.java)
+        val intent = Intent(context, ReceiveResultCheckingActivityService::class.java)
         val pendingIntent =
             PendingIntent.getBroadcast(context, ID_REPEATING, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         pendingIntent.cancel()
@@ -187,9 +176,10 @@ class ReceiveRegistrationService : BroadcastReceiver() {
     }
 
     companion object {
-        private var ID_REPEATING = 100
-        private const val CHANNEL_ID = "channel_repeating_admin"
-        private const val CHANNEL_NAME = "channel_name_repeating_admin"
-        private const val NOTIFICATION_ID = 2
+        private var ID_REPEATING = 3
+        private const val CHANNEL_ID = "channel_repeating_user"
+        private const val CHANNEL_NAME = "channel_name_repeating_user"
+        private const val NOTIFICATION_ID = 11
     }
+
 }

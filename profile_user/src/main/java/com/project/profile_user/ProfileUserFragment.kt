@@ -1,6 +1,7 @@
 package com.project.profile_user
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -21,6 +22,7 @@ import com.project.profile_user.databinding.FragmentProfileUserBinding
 import com.project.profile_user.di.profileUserModule
 import com.project.profile_user.utils.showAlertDialogEditName
 import com.project.profile_user.utils.showBottomSheetDialogEditImage
+import com.project.rumahsakitrujukancovid_19.notification.ReceiveResultCheckingActivityService
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginActivity
 import com.project.rumahsakitrujukancovid_19.utils.showToast
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -121,6 +123,7 @@ class ProfileUserFragment : Fragment() {
                     startActivity(intent)
                     activity?.finishAffinity()
                 }
+                ReceiveResultCheckingActivityService().cancelRepeatingAlarm(activity?.applicationContext as Context)
             }
 
             btnEditName.setOnClickListener {

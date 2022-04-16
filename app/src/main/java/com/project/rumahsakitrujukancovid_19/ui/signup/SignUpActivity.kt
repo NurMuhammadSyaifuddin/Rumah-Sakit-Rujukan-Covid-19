@@ -43,6 +43,16 @@ class SignUpActivity : AppCompatActivity() {
         loading = showAlertLoading(this@SignUpActivity)
 
         processedAccount()
+
+        onAction()
+    }
+
+    private fun onAction() {
+        binding.apply {
+            imgClose.setOnClickListener {
+                finish()
+            }
+        }
     }
 
     private fun processedAccount() {

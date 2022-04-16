@@ -15,7 +15,7 @@ import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
 import com.project.core.utils.WAIT
 import com.project.hospital_admin.databinding.FragmentHomeBinding
 import com.project.hospital_admin.di.registrationModule
-import com.project.hospital_admin.norification.ReceiveRegistrationService
+import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
 import com.project.hospital_admin.ui.registration.CheckingRegistrationActivity
 import com.project.rumahsakitrujukancovid_19.utils.gone
 import com.project.rumahsakitrujukancovid_19.utils.visible
