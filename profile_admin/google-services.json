@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75821343474",
+    "firebase_url": "https://rumah-sakit-rujukan-covi-ed251-default-rtdb.firebaseio.com",
+    "project_id": "rumah-sakit-rujukan-covi-ed251",
+    "storage_bucket": "rumah-sakit-rujukan-covi-ed251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75821343474:android:eae6e94b815c96bcde266b",
+        "android_client_info": {
+          "package_name": "com.project.rumahsakitrujukancovid_19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75821343474-d4su2t1a2f6hajaccks7r6m8g6eqa3m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaQyPE8bs6iiH4KHTyFDez2Ailm8PEJZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75821343474-d4su2t1a2f6hajaccks7r6m8g6eqa3m7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
