@@ -41,11 +41,11 @@
         android:id="@+id/img_refresh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_refresh"
-        android:layout_marginEnd="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginEnd="@dimen/dp_16"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_say_hello_user"
@@ -131,18 +131,23 @@
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:shimmer_auto_start="true">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:fillViewport="true">
 
-            <include layout="@layout/item_list_hospital_place_holder" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <include layout="@layout/item_list_hospital_place_holder" />
+                <include layout="@layout/item_list_hospital_place_holder" />
 
-            <include layout="@layout/item_list_hospital_place_holder" />
+                <include layout="@layout/item_list_hospital_place_holder" />
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 

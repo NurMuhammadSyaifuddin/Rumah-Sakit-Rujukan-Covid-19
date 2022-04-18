@@ -62,26 +62,11 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                             "referredTo", context.getString(R.string.default_text)
                         )
 
-                    val intentToDetailRegistration = Intent(
-                        context,
-                        Class.forName("com.project.user.ui.registration.DetailRegistrationActivity")
-                    ).also {
-                        it.putExtra(EXTRA_DATA_FOR_REGISTRATION, registration)
-                    }
-
-                    val pendingIntent = PendingIntent.getActivity(
-                        context,
-                        0,
-                        intentToDetailRegistration,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                    )
-
                     val notificationManager =
                         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     val alarmSound =
                         RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-                        .setContentIntent(pendingIntent)
                         .setSmallIcon(R.drawable.ic_launcher_foreground)
                         .setColor(ContextCompat.getColor(context, android.R.color.transparent))
                         .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
@@ -164,16 +149,6 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
         val pendingIntent =
             PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_MUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
-    }
-
-    fun cancelRepeatingAlarm(context: Context) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, EventAfterOneDayRegistration::class.java)
-        val pendingIntent =
-            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        pendingIntent.cancel()
-
-        alarmManager.cancel(pendingIntent)
     }
 
     companion object {
