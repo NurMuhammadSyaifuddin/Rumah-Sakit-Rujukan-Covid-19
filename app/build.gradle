@@ -38,6 +38,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
     dynamicFeatures = [':user_normal', ':hospital_admin', ':bookmark_user', ':activity_user', ':profile_user', ':profile_admin', ':profile_hospital']
 }
 
