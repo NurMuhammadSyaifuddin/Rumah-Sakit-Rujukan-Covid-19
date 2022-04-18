@@ -32,7 +32,7 @@ class ReceiveResultCheckingActivityService : BroadcastReceiver() {
                         it.toObject(Registration::class.java)
                     }
                     .filter {
-                        it?.statusRegistration != WAIT && !it?.isShowNotif!!
+                        it?.statusRegistration != context?.wait() && !it?.isShowNotif!!
                     }
 
                 if (registrations.isNotEmpty()) {
@@ -63,10 +63,10 @@ class ReceiveResultCheckingActivityService : BroadcastReceiver() {
         )
 
         val title =
-            if (registration?.statusRegistration == ACCEPT) context.getString(R.string.registration_successful)
+            if (registration?.statusRegistration == context.accepted()) context.getString(R.string.registration_successful)
             else context.getString(R.string.registration_rejected)
 
-        val desc = if (registration?.statusRegistration == ACCEPT) context.getString(
+        val desc = if (registration?.statusRegistration == context.accepted()) context.getString(
             R.string.registration_accept_by_admin,
             registration.hospitalName.toString()
         )

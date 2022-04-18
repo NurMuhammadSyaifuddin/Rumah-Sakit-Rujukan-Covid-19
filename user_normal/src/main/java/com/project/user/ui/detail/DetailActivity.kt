@@ -123,7 +123,7 @@ class DetailActivity : AppCompatActivity() {
                                                     .filter { value ->
                                                         val date = value?.registrationDate?.split(" ")?.toTypedArray()
                                                         val dateArray = date?.get(0).toString()
-                                                        value?.idUser == idUser && value.hospitalName == hospitalName && value.statusRegistration != REJECT && isCurrentTimeTheSame(dateArray)
+                                                        value?.idUser == idUser && value.hospitalName == hospitalName && value.statusRegistration != this@DetailActivity.rejected() && isCurrentTimeTheSame(dateArray)
                                                     }
                                                     .take(1)
                                                     .toList()
@@ -132,7 +132,7 @@ class DetailActivity : AppCompatActivity() {
                                                     loading.dismiss()
 
                                                     val message =
-                                                        if (data[0]?.statusRegistration == WAIT) getString(
+                                                        if (data[0]?.statusRegistration == this@DetailActivity.wait()) getString(
                                                             R.string.signed_up_today,
                                                             hospitalName
                                                         )

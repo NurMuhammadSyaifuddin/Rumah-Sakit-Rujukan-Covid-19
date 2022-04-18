@@ -2,7 +2,6 @@ package com.project.core.domain.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import com.project.core.utils.WAIT
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -18,7 +17,7 @@ data class Registration(
     var hospitalName: String? = null,
     var imageUrl: String? = null,
     var note: String? = null,
-    var statusRegistration: String? = WAIT,
+    var statusRegistration: String? = null,
     var queue: Int? = 0,
     var typeActivities: String? = null,
     @field:JvmField

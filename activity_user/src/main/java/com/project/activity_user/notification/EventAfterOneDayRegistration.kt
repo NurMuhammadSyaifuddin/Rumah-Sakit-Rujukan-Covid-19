@@ -37,7 +37,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                         it.toObject(Registration::class.java)
                     }
                     .filter {
-                        it?.hospitalName == hospital?.name.toString() && it.statusRegistration == WAIT && it.registrationNumber == registration?.registrationNumber.toString()
+                        it?.hospitalName == hospital?.name.toString() && it.statusRegistration == context.wait() && it.registrationNumber == registration?.registrationNumber.toString()
                     }
                     .take(1)
                     .toList()
@@ -48,7 +48,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                         .collection(registration?.idUser.toString())
                         .document(registration?.registrationNumber.toString())
                         .update(
-                            "statusRegistration", REJECT,
+                            "statusRegistration", context.rejected(),
                             "note", context.getString(R.string.reject_by_system),
                             "referredTo", context.getString(R.string.default_text)
                         )
@@ -57,7 +57,7 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
                         .collection(hospital?.emailAdmin.toString())
                         .document(registration?.registrationNumber.toString())
                         .update(
-                            "statusRegistration", REJECT,
+                            "statusRegistration", context.rejected(),
                             "note", context.getString(R.string.reject_by_system),
                             "referredTo", context.getString(R.string.default_text)
                         )

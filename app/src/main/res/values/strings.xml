@@ -6,8 +6,6 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
-    <string name="or">OR</string>
-    <string name="sign_in_with_google">Sign In With Google</string>
     <string name="no_account_question">Don\'t Have Account?</string>
     <string name="register_here">Register here</string>
     <string name="sign_up">Sign Up</string>

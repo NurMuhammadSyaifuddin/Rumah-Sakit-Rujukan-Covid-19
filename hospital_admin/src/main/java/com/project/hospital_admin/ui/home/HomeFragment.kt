@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
-import com.project.core.utils.WAIT
+import com.project.core.utils.wait
 import com.project.hospital_admin.databinding.FragmentHomeBinding
 import com.project.hospital_admin.di.registrationModule
 import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
         activityAdminAdapter = ActivityAdminAdapter().apply {
             onClick {
 
-                if (it.statusRegistration == WAIT) {
+                if (it.statusRegistration == activity?.wait()) {
                     Intent(
                         activity,
                         CheckingRegistrationActivity::class.java

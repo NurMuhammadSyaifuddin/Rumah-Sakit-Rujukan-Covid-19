@@ -1,11 +1,13 @@
 package com.project.core.utils
 
+import android.content.Context
+import com.project.core.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val WAIT = "Menunggu Konfirmasi Admin"
-const val ACCEPT = "Diterima"
-const val REJECT = "Ditolak"
+fun Context.wait() = getString(R.string.wait)
+fun Context.accepted() = getString(R.string.accepted)
+fun Context.rejected() = getString(R.string.rejected)
 
 const val PATH_REGISTRATION = "registration"
 const val PATH_ADMIN = "admin"

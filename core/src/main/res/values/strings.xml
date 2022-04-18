@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wait">Waiting for Admin Confirmation</string>
+    <string name="accepted">Accepted</string>
+    <string name="rejected">Rejected</string>
+</resources>

@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.project.activity_user.utils.DivItemRegistrationCallback
 import com.project.core.domain.model.Registration
+import com.project.core.utils.*
 import com.project.history_user.R
 import com.project.history_user.databinding.ItemRegistrationBinding
 import com.project.rumahsakitrujukancovid_19.utils.loadImage
-import com.project.core.utils.ACCEPT
-import com.project.core.utils.REJECT
-import com.project.core.utils.WAIT
 
 class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>() {
 
@@ -39,7 +37,7 @@ class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>
                 tvRegistrationDate.text = item.registrationDate.toString()
 
                 when (val status = item.statusRegistration) {
-                    WAIT -> {
+                    itemView.context.wait() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(
@@ -54,7 +52,7 @@ class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>
                             null
                         )
                     }
-                    ACCEPT -> {
+                    itemView.context.accepted() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(
@@ -69,7 +67,7 @@ class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>
                             null
                         )
                     }
-                    REJECT -> {
+                    itemView.context.rejected() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(

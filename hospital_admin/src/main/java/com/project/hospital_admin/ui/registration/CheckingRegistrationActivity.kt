@@ -17,10 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
-import com.project.core.utils.ACCEPT
-import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
-import com.project.core.utils.REJECT
-import com.project.core.utils.isCurrentTimeTheSame
+import com.project.core.utils.*
 import com.project.hospital_admin.R
 import com.project.hospital_admin.databinding.ActivityCheckingRegistrationBinding
 import com.project.hospital_admin.utils.showAlertDialogCheckingRegistration
@@ -79,7 +76,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         getString(R.string.are_you_sure_reject_this_registration)
                     ) {
                         loading.show()
-                        processedRegistration(registration, REJECT)
+                        processedRegistration(registration, this@CheckingRegistrationActivity.rejected())
                     }.show()
                 }
 
@@ -90,7 +87,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         getString(R.string.will_you_acceot_this_registration)
                     ) {
                         loading.show()
-                        processedRegistration(registration, ACCEPT)
+                        processedRegistration(registration, this@CheckingRegistrationActivity.wait())
                     }.show()
                 }
 
@@ -139,12 +136,15 @@ class CheckingRegistrationActivity : AppCompatActivity() {
 
                             if (registrations.isNotEmpty()) {
                                 val queue =
-                                    if (statusRegistration == ACCEPT) registrations.indexOf(
-                                        registration
-                                    ) + 1 else 0
+                                    if (statusRegistration == this.accepted()) {
+                                        val index = registrations.indexOf(
+                                            registration
+                                        ) + 1
+                                        if ( index == 0) 1 else index
+                                    } else 0
 
                                 val statusReferredTo =
-                                    if (statusRegistration == ACCEPT) registration?.referredTo.toString() else getString(
+                                    if (statusRegistration == this.accepted()) registration?.referredTo.toString() else getString(
                                         R.string.default_text
                                     )
 
@@ -230,7 +230,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
             }
 
         val titleStatusRegistration =
-            if (statusRegistration == ACCEPT) getString(R.string.approved) else getString(R.string.rejected)
+            if (statusRegistration == this.accepted()) getString(R.string.approved) else getString(R.string.rejected)
 
         showNotification(titleStatusRegistration, registration)
 

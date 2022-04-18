@@ -50,7 +50,7 @@ class ReceiveRegistrationService : BroadcastReceiver() {
                                     it.toObject(Registration::class.java)
                                 }
                                 .filter {
-                                    it?.statusRegistration == WAIT && !it.isShowNotif
+                                    it?.statusRegistration == context?.wait() && !it?.isShowNotif!!
                                 }
 
                             if (registrations.isNotEmpty()) {

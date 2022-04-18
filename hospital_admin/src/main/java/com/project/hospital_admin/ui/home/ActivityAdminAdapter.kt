@@ -6,9 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.project.core.domain.model.Registration
-import com.project.core.utils.ACCEPT
-import com.project.core.utils.REJECT
-import com.project.core.utils.WAIT
+import com.project.core.utils.*
 import com.project.hospital_admin.R
 import com.project.hospital_admin.databinding.ItemRegistrationAdminBinding
 import com.project.hospital_admin.utils.DivItemRegistrationCallback
@@ -37,7 +35,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                 tvRegistrationDate.text = item.registrationDate.toString()
 
                 when (val status = item.statusRegistration) {
-                    WAIT -> {
+                    itemView.context.wait() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(
@@ -52,7 +50,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                             null
                         )
                     }
-                    ACCEPT -> {
+                    itemView.context.accepted() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(
@@ -67,7 +65,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                             null
                         )
                     }
-                    REJECT -> {
+                    itemView.context.rejected() -> {
                         tvStatusRegistration.text = status
                         tvStatusRegistration.setTextColor(
                             ResourcesCompat.getColor(
