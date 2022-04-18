@@ -13,9 +13,5 @@
 
     <color name="gray">#E1DEDE</color>
 
-    <color name="bg_edit_text">#EFEFEF</color>
-
-    <color name="bg_loading_auth">#CE5C5C5C</color>
-
     <color name="yellow">#ffff00</color>
 </resources>
