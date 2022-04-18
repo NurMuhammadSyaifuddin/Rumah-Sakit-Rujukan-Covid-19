@@ -137,21 +137,25 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                                 }
                                 .toList()
 
-                            val queue =
-                                if (statusRegistration == ACCEPT) registrations.indexOf(registration) + 1 else 0
+                            if (registrations.isNotEmpty()) {
+                                val queue =
+                                    if (statusRegistration == ACCEPT) registrations.indexOf(
+                                        registration
+                                    ) + 1 else 0
 
-                            val statusReferredTo =
-                                if (statusRegistration == ACCEPT) registration?.referredTo.toString() else getString(
-                                    R.string.default_text
+                                val statusReferredTo =
+                                    if (statusRegistration == ACCEPT) registration?.referredTo.toString() else getString(
+                                        R.string.default_text
+                                    )
+
+                                updateRegistration(
+                                    user,
+                                    registration,
+                                    statusRegistration,
+                                    queue,
+                                    statusReferredTo
                                 )
-
-                            updateRegistration(
-                                user,
-                                registration,
-                                statusRegistration,
-                                queue,
-                                statusReferredTo
-                            )
+                            }
                         }
 
                 }
