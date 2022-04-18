@@ -28,18 +28,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/img_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:layout_constraintBottom_toBottomOf="@id/text_view_sign_up"
-            app:layout_constraintStart_toStartOf="@id/text_view_sign_up"
-            app:layout_constraintTop_toTopOf="@id/text_view_sign_up"
-            app:srcCompat="@drawable/ic_close"
-            app:tint="@color/gray"
-            tools:ignore="ContentDescription" />
-
         <TextView
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"

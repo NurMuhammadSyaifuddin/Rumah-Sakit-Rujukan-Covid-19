@@ -24,7 +24,7 @@ class RegistrationDateFormatter {
 
         val dates = mutableListOf<String>()
 
-        for (i in calendar.firstDayOfWeek..Calendar.SATURDAY) {
+        for (i in calendar.firstDayOfWeek..Calendar.FRIDAY) {
             dates.add(formatter.format(calendar.time))
             calendar.add(Calendar.DAY_OF_WEEK, 1)
         }
@@ -34,14 +34,13 @@ class RegistrationDateFormatter {
         val newDates = mutableListOf<String>()
 
         if (currentDay != 1) {
-            for (i in currentDay..Calendar.SATURDAY) {
+            for (i in currentDay..Calendar.FRIDAY) {
                 when (i) {
                     2 -> days.add(context.getString(R.string.monday))
                     3 -> days.add(context.getString(R.string.tuesday))
                     4 -> days.add(context.getString(R.string.wednesday))
                     5 -> days.add(context.getString(R.string.thursday))
                     6 -> days.add(context.getString(R.string.friday))
-                    7 -> days.add("setu")
                 }
             }
 

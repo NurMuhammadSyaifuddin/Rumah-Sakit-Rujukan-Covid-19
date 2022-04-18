@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -15,6 +14,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.project.core.domain.model.User
 import com.project.rumahsakitrujukancovid_19.R
 import com.project.rumahsakitrujukancovid_19.databinding.ActivityLoginBinding
+import com.project.rumahsakitrujukancovid_19.ui.forgot.ForgotActivity
 import com.project.rumahsakitrujukancovid_19.ui.signup.SignUpActivity
 import com.project.rumahsakitrujukancovid_19.utils.*
 import io.reactivex.Observable
@@ -92,6 +92,12 @@ class LoginActivity : AppCompatActivity() {
             btnRegister.setOnClickListener {
                 Intent(this@LoginActivity, SignUpActivity::class.java).also {
                     startActivity(it)
+                }
+            }
+
+            btnForgot.setOnClickListener {
+                Intent(this@LoginActivity, ForgotActivity::class.java).also { intent ->
+                    startActivity(intent)
                 }
             }
 

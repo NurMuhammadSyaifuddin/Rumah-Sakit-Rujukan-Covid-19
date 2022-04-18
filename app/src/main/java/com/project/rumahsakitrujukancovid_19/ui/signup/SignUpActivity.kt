@@ -44,15 +44,6 @@ class SignUpActivity : AppCompatActivity() {
 
         processedAccount()
 
-        onAction()
-    }
-
-    private fun onAction() {
-        binding.apply {
-            imgClose.setOnClickListener {
-                finish()
-            }
-        }
     }
 
     private fun processedAccount() {

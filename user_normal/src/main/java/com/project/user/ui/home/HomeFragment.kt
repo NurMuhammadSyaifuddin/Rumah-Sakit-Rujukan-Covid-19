@@ -85,13 +85,22 @@ class HomeFragment : Fragment() {
 
         if (activity != null) {
             getHospital()
-
             getUser()
-
             getSearchHospital()
 
         }
 
+        onAction()
+    }
+
+    private fun onAction() {
+        binding.apply {
+            imgRefresh.setOnClickListener {
+                getHospital()
+                getUser()
+                getDataSearch()
+            }
+        }
     }
 
     private fun handleBackPressed(activiy: FragmentActivity) {

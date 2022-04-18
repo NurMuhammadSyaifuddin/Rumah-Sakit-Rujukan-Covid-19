@@ -60,6 +60,17 @@ class ActivitiesUserFragment : Fragment() {
         }
 
         getActivitiesUser()
+
+        onAction()
+    }
+
+    private fun onAction() {
+        binding.apply {
+            swipeMain.setOnRefreshListener {
+                swipeMain.isRefreshing = true
+                getActivitiesUser()
+            }
+        }
     }
 
     private fun getActivitiesUser() {
@@ -102,6 +113,7 @@ class ActivitiesUserFragment : Fragment() {
                 titleEmptyState.gone()
                 descEmptyState.gone()
             }
+            swipeMain.isRefreshing = false
         }
     }
 

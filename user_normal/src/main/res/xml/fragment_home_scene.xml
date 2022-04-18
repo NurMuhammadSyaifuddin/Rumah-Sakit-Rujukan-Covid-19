@@ -58,6 +58,10 @@
             android:visibility="gone" />
 
         <Constraint
+            android:id="@+id/img_refresh"
+            android:visibility="gone" />
+
+        <Constraint
             android:id="@+id/search_view_hospital"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

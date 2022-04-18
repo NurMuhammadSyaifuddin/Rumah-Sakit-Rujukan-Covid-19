@@ -81,6 +81,17 @@ class HomeFragment : Fragment() {
         alarmReceiver.setUpRepeatingAlarm(activity?.applicationContext as Context)
 
         getActivitiesAdmin()
+
+        onAction()
+    }
+
+    private fun onAction() {
+        binding.apply {
+            swipeRefresh.setOnRefreshListener {
+                swipeRefresh.isRefreshing = true
+                getActivitiesAdmin()
+            }
+        }
     }
 
     private fun getActivitiesAdmin() {
@@ -141,6 +152,7 @@ class HomeFragment : Fragment() {
                 titleEmptyState.gone()
                 descEmptyState.gone()
             }
+            swipeRefresh.isRefreshing = false
         }
     }
 
