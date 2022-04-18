@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TitleToolbar" parent="android:TextAppearance">
-        <item name="fontFamily">@font/poppins_semibold</item>
-        <item name="android:textSize">@dimen/sp_20</item>
-        <item name="background">@color/white</item>
-    </style>
-
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/poppins_regular</item>
     </style>

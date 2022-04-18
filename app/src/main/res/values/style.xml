@@ -10,6 +10,7 @@
 
         <item name="android:statusBarColor">?attr/colorOnPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
     
     <style name="AppTextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">

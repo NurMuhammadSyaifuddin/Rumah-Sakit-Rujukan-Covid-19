@@ -1,6 +1,5 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="activity">Activity</string>
     <string name="chat">Chat</string>
@@ -8,7 +7,6 @@
     <string name="profile">Profile</string>
     <string name="default_text">-</string>
     <string name="find_your_destination_hospital">Find Your Destination\nHospital</string>
-    <string name="hospitals">Hospitals</string>
     <string name="find_a_hospital">Find a Hospital</string>
     <string name="say_hello_to_user">Hi, %s</string>
     <string name="maps">Maps</string>
@@ -37,5 +35,4 @@
     <string name="please_select">Please select</string>
     <string name="only_weekdays_to_registration">Sorry, registration can only be done Monday-Friday</string>
     <string name="referred_to">Referred To</string>
-    >
 </resources>

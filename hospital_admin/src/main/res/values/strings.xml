@@ -1,7 +1,6 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home">Home</string>
-    <string name="chat">Chat</string>
     <string name="profile">Profile</string>
     <string name="activities">Activities</string>
     <string name="empty_state_title_no_activities_item">No acvitiities yet</string>

@@ -7,7 +7,5 @@
     <string name="desc_otomatic_reject_registration">Your registration at %s hospital is automatically rejected by the system, because the admin does not respond to your registration before 00.00 WIB</string>
     <string name="reject_by_system">Rejected by system</string>
     <string name="registration">Registration</string>
-    <string name="getting_new_registration">New Registration from %s</string>
-    <string name="desc_getting_new_registration">Immediately confirm registration from %s before 00:00 WIB</string>
     <string name="default_text">-</string>
 </resources>

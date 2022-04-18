@@ -18,5 +18,4 @@
     <string name="phone_is_copied">%s has been copied</string>
     <string name="label">Phone number copied</string>
     <string name="hospital_image_updated">Hospital image has been successfully updated</string>
-    <string name="delete_hospital_image_success">Delete hospital image is successful</string>
 </resources>

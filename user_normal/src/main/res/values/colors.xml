@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_view_item_list_hospital">#4D5C5C5C</color>
     <color name="textColorPrimary">#222223</color>
 </resources>
