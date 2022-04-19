@@ -156,7 +156,7 @@ class LoginActivity : AppCompatActivity() {
                     .map { snapshot ->
                         snapshot.toObject(User::class.java)
                     }
-                    .filter { it?.email.toString() == binding.edtEmail.text.toString() }
+                    .filter { it?.email.toString() == binding.edtEmail.text.toString() && it?.id == auth.currentUser?.uid.toString()}
                     .take(1)
                     .toList()
 

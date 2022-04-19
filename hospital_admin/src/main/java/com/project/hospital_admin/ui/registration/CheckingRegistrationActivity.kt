@@ -87,7 +87,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         getString(R.string.will_you_acceot_this_registration)
                     ) {
                         loading.show()
-                        processedRegistration(registration, this@CheckingRegistrationActivity.wait())
+                        processedRegistration(registration, this@CheckingRegistrationActivity.accepted())
                     }.show()
                 }
 
@@ -175,6 +175,8 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                 .isNotBlank()
         ) binding.edtNote.text.toString() else getString(R.string.default_text)
 
+        val acceptDate = if (statusRegistration == this.accepted()) getCurrentTime() else getString(R.string.default_text)
+
         viewModel.collectionRegistration(
             db,
             registration?.idUser.toString(),
@@ -183,6 +185,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
             .update(
                 "note", note,
                 "statusRegistration", statusRegistration,
+                "acceptDate", acceptDate,
                 "queue", queue,
                 "referredTo", referredTo
             )
@@ -195,6 +198,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
             .update(
                 "note", note,
                 "statusRegistration", statusRegistration,
+                "acceptDate", acceptDate,
                 "queue", queue,
                 "referredTo", referredTo
             )

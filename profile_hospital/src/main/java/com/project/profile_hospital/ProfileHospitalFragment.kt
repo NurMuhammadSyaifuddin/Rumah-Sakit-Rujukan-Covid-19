@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.project.core.data.source.Resource
 import com.project.core.domain.model.Hospital
+import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.profile_hospital.databinding.FragmentProfileHospitalBinding
 import com.project.profile_hospital.di.profileHospitalModule
@@ -79,11 +80,13 @@ class ProfileHospitalFragment : Fragment() {
                         viewModel.storageReference(ref, hospitalAdmin?.name.toString())
                             .downloadUrl
                             .addOnCompleteListener { task ->
-                                if (task.isSuccessful){
-                                    realtimeDatabase.child(idHospital.toString()).child(IMAGE_URL).setValue(task.result.toString())
+                                if (task.isSuccessful) {
+                                    realtimeDatabase.child(idHospital.toString()).child(IMAGE_URL)
+                                        .setValue(task.result.toString())
                                         .addOnSuccessListener {
                                             (activity as FragmentActivity).showToast(getString(R.string.hospital_image_updated))
                                             getProfileHospital()
+                                            editPhotoForRegistration(task.result.toString())
                                         }
                                         .addOnFailureListener { error ->
                                             (activity as FragmentActivity).showToast(error.message.toString())
@@ -111,11 +114,13 @@ class ProfileHospitalFragment : Fragment() {
                     viewModel.storageReference(ref, hospitalAdmin?.name.toString())
                         .downloadUrl
                         .addOnCompleteListener { task ->
-                            if (task.isSuccessful){
-                                realtimeDatabase.child(idHospital.toString()).child(IMAGE_URL).setValue(task.result.toString())
+                            if (task.isSuccessful) {
+                                realtimeDatabase.child(idHospital.toString()).child(IMAGE_URL)
+                                    .setValue(task.result.toString())
                                     .addOnSuccessListener {
                                         (activity as FragmentActivity).showToast(getString(R.string.hospital_image_updated))
                                         getProfileHospital()
+                                        editPhotoForRegistration(task.result.toString())
                                     }
                                     .addOnFailureListener { error ->
                                         (activity as FragmentActivity).showToast(error.message.toString())
@@ -127,6 +132,64 @@ class ProfileHospitalFragment : Fragment() {
             .addOnFailureListener {
                 (activity as FragmentActivity).showToast(it.message.toString())
             }
+    }
+
+    private fun editPhotoForRegistration(imageUrl: String) {
+        viewModel.collectionUser(db)
+            .get()
+            .addOnSuccessListener { query ->
+                val user = query.documents.asSequence()
+                    .map {
+                        it.toObject(User::class.java)
+                    }
+                    .filter {
+                        it?.id == auth.currentUser?.uid.toString() && it.status == HOSPITAL_ADMIN
+                    }
+                    .take(1)
+                    .toList()
+
+                if (user.isNotEmpty()) {
+                    viewModel.collectionRegistrationAdmin(db, user[0]?.email.toString())
+                        .get()
+                        .addOnSuccessListener { queryAdmin ->
+                            val registrations = queryAdmin.documents
+                                .map {
+                                    it.toObject(Registration::class.java)
+                                }
+
+                            if (registrations.isNotEmpty()) {
+                                for (index in registrations.indices) {
+                                    updateRegistrationAdmin(
+                                        index,
+                                        registrations,
+                                        user[0]?.email.toString(),
+                                        imageUrl
+                                    )
+                                }
+                            }
+
+                        }
+                }
+            }
+    }
+
+    private fun updateRegistrationAdmin(
+        index: Int,
+        registrations: List<Registration?>,
+        email: String,
+        imagUrl: String
+    ) {
+        val data = registrations[index]
+
+        viewModel.collectionRegistrationAdminDocument(db, email, data?.registrationNumber.toString())
+            .update("imageUrl", imagUrl)
+
+        viewModel.collectionRegistrationUserDocument(
+            db,
+            data?.idUser.toString(),
+            data?.registrationNumber.toString()
+        )
+            .update("imageUrl", imagUrl)
     }
 
     override fun onCreateView(
@@ -152,25 +215,42 @@ class ProfileHospitalFragment : Fragment() {
 
     private fun onAction() {
         binding.apply {
-            imgEditName.setOnClickListener {
-                updateHospitalAdmin(NAME_HOSPITAL, tvName.text.toString(), getString(R.string.name_changed_successfully))
-            }
 
             imgEditLocation.setOnClickListener {
-                updateHospitalAdmin(ADDRESS_HOSPITAL, tvAddress.text.toString(), getString(R.string.address_changed_successfully), getString(R.string.enter_hosptital_address))
+                updateHospitalAdmin(
+                    ADDRESS_HOSPITAL,
+                    tvAddress.text.toString(),
+                    getString(R.string.address_changed_successfully),
+                    getString(R.string.enter_hosptital_address)
+                )
             }
 
             imgEditWebsiteUrl.setOnClickListener {
-                updateHospitalAdmin(WEBSITE_URL, tvWebsiteUrl.text.toString(), getString(R.string.website_url_changed_successfully), getString(R.string.enter_website_url))
+                updateHospitalAdmin(
+                    WEBSITE_URL,
+                    tvWebsiteUrl.text.toString(),
+                    getString(R.string.website_url_changed_successfully),
+                    getString(R.string.enter_website_url)
+                )
             }
 
             imgEditPhone.setOnClickListener {
-                updateHospitalAdmin(PHONE_HOSPITAL, tvTelephone.text.toString(), getString(R.string.phone_changed_successfully), getString(R.string.enter_hospital_phone))
+                updateHospitalAdmin(
+                    PHONE_HOSPITAL,
+                    tvTelephone.text.toString(),
+                    getString(R.string.phone_changed_successfully),
+                    getString(R.string.enter_hospital_phone)
+                )
             }
 
             icCopy.setOnClickListener {
                 copyToClipBoard(tvTelephone.text.toString())
-                (activity as FragmentActivity).showToast(getString(R.string.phone_is_copied, tvTelephone.text.toString()))
+                (activity as FragmentActivity).showToast(
+                    getString(
+                        R.string.phone_is_copied,
+                        tvTelephone.text.toString()
+                    )
+                )
             }
 
             imgPoster.setOnClickListener {
@@ -213,7 +293,12 @@ class ProfileHospitalFragment : Fragment() {
         clipboard.setPrimaryClip(clip)
     }
 
-    private fun updateHospitalAdmin(field: String, hint: String, message: String, titleDialog: String? = null) {
+    private fun updateHospitalAdmin(
+        field: String,
+        hint: String,
+        message: String,
+        titleDialog: String? = null
+    ) {
         binding.apply {
             showAlertDialogEditName(activity as FragmentActivity, hint, titleDialog) { data ->
                 realtimeDatabase.child(idHospital.toString()).child(field).setValue(data)
@@ -319,7 +404,6 @@ class ProfileHospitalFragment : Fragment() {
     }
 
     companion object {
-        private const val NAME_HOSPITAL = "name"
         private const val ADDRESS_HOSPITAL = "address"
         private const val WEBSITE_URL = "website_url"
         private const val PHONE_HOSPITAL = "phone"

@@ -209,13 +209,16 @@ class HomeFragment : Fragment() {
                 when (hospital) {
                     is Resource.Loading -> {
                         binding.loading.visible()
+                        binding.rvHospitals.gone()
                     }
                     is Resource.Success -> {
                         binding.loading.gone()
+                        binding.rvHospitals.visible()
                         hospitalAdapter.listHospital = hospital.data as MutableList<Hospital>
                     }
                     is Resource.Error -> {
                         binding.loading.gone()
+                        binding.rvHospitals.visible()
                         Toast.makeText(activity, hospital.message.toString(), Toast.LENGTH_SHORT)
                             .show()
                     }

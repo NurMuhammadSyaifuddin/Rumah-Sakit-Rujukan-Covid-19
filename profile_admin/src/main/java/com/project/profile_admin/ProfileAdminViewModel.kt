@@ -3,6 +3,8 @@ package com.project.profile_admin
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.StorageReference
+import com.project.core.utils.PATH_ADMIN
+import com.project.core.utils.PATH_REGISTRATION
 import com.project.rumahsakitrujukancovid_19.utils.PATH_USER
 
 class ProfileAdminViewModel: ViewModel() {

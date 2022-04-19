@@ -137,17 +137,17 @@ class EventAfterOneDayRegistration : BroadcastReceiver() {
             it.putExtra(EXTRA_DATA_REGISTRATION, registration)
         }
 
-        val calendar = Calendar.getInstance().apply {
-            set(Calendar.YEAR, Integer.parseInt(date[0]))
-            set(Calendar.MONTH, Integer.parseInt(date[1]) - 1)
-            set(Calendar.DATE, Integer.parseInt(date[2]))
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
+        val calendar = Calendar.getInstance().also {
+            it.set(Calendar.YEAR, Integer.parseInt(date[0]))
+            it.set(Calendar.MONTH, Integer.parseInt(date[1]) - 1)
+            it.set(Calendar.DATE, Integer.parseInt(date[2]))
+            it.set(Calendar.HOUR_OF_DAY, 0)
+            it.set(Calendar.MINUTE, 0)
+            it.set(Calendar.SECOND, 0)
         }
 
         val pendingIntent =
-            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_MUTABLE)
+            PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
     }
 

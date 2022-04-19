@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.core.utils.loadImage
 import com.project.profile_user.databinding.FragmentProfileUserBinding
@@ -68,6 +69,8 @@ class ProfileUserFragment : Fragment() {
                 if (it.isSuccessful) {
                     getUserProfile()
                     (activity as FragmentActivity).showToast(getString(R.string.image_profile_updated))
+
+                    updatePhotoForRegistration()
                 }
             }.addOnFailureListener {
                 (activity as FragmentActivity).showToast(it.message.toString())
@@ -86,11 +89,62 @@ class ProfileUserFragment : Fragment() {
                 if (it.isSuccessful) {
                     getUserProfile()
                     (activity as FragmentActivity).showToast(getString(R.string.image_profile_updated))
+
+                    updatePhotoForRegistration()
                 }
             }
             .addOnFailureListener {
                 (activity as FragmentActivity).showToast(it.message.toString())
             }
+    }
+
+    private fun updatePhotoForRegistration() {
+        viewModel.storageReference(ref, user?.uid.toString())
+            .downloadUrl
+            .addOnCompleteListener { task ->
+                viewModel.collectionRegistrationUser(db, user?.uid.toString())
+                    .get()
+                    .addOnSuccessListener { queryUser ->
+                        val registrations = queryUser.documents
+                            .map { it.toObject(Registration::class.java) }
+
+                        if (registrations.isNotEmpty()) {
+
+                            viewModel.collectionUser(db, user?.uid.toString())
+                                .get()
+                                .addOnCompleteListener { value ->
+                                    val user = value.result?.toObject(User::class.java)
+
+                                    for (index in registrations.indices) {
+                                        updateRegistration(index, registrations, if (task.isSuccessful) task.result.toString() else user?.photoUrl.toString())
+                                    }
+                                }
+
+                        }
+                    }
+            }
+    }
+
+    private fun updateRegistration(
+        index: Int,
+        registrations: List<Registration?>,
+        photoUrl: String
+    ) {
+        val data = registrations[index]
+
+        viewModel.collectionRegistrationUserDocument(
+            db,
+            data?.idUser.toString(),
+            data?.registrationNumber.toString()
+        )
+            .update("photoUrl", photoUrl)
+
+        viewModel.collectionRegistrationAdminDocument(
+            db,
+            data?.emailAdmin.toString(),
+            data?.registrationNumber.toString()
+        )
+            .update("photoUrl", photoUrl)
     }
 
     override fun onCreateView(
@@ -138,6 +192,8 @@ class ProfileUserFragment : Fragment() {
                         .addOnSuccessListener {
                             getUserProfile()
                             (activity as FragmentActivity).showToast(getString(R.string.name_change_success))
+
+                            updateNameForRegistration()
                         }
                         .addOnFailureListener {
                             (activity as FragmentActivity).showToast(it.message.toString())
@@ -149,6 +205,49 @@ class ProfileUserFragment : Fragment() {
                 getPickerEditImage()
             }
         }
+    }
+
+    private fun updateNameForRegistration() {
+        viewModel.collectionUser(db, user?.uid.toString())
+            .get()
+            .addOnCompleteListener { task ->
+                val data = task.result?.toObject(User::class.java)
+
+                viewModel.collectionRegistrationUser(db, user?.uid.toString())
+                    .get()
+                    .addOnSuccessListener { value ->
+                        val registrations = value.documents
+                            .map { it.toObject(Registration::class.java) }
+
+                        if (registrations.isNotEmpty()) {
+                            for (index in registrations.indices) {
+                                updateRegistrationName(index, registrations, data?.name.toString())
+                            }
+                        }
+                    }
+            }
+    }
+
+    private fun updateRegistrationName(
+        index: Int,
+        registrations: List<Registration?>,
+        name: String
+    ) {
+        val data = registrations[index]
+
+        viewModel.collectionRegistrationUserDocument(
+            db,
+            data?.idUser.toString(),
+            data?.registrationNumber.toString()
+        )
+            .update("name", name)
+
+        viewModel.collectionRegistrationAdminDocument(
+            db,
+            data?.emailAdmin.toString(),
+            data?.registrationNumber.toString()
+        )
+            .update("name", name)
     }
 
     private fun getPickerEditImage() {
@@ -172,6 +271,9 @@ class ProfileUserFragment : Fragment() {
                 .addOnSuccessListener {
                     getUserProfile()
                     (activity as FragmentActivity).showToast(getString(R.string.delete_image_success))
+
+                    updatePhotoForRegistration()
+
                 }
                 .addOnFailureListener {
                     (activity as FragmentActivity).showToast(it.message.toString())

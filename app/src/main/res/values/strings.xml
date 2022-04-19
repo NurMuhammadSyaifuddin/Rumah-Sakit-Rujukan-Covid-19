@@ -58,8 +58,8 @@
     <string name="december">December</string>
     <string name="registration_successful">Registration Successful</string>
     <string name="registration_rejected">Registration Rejected</string>
-    <string name="registration_accept_by_admin">Your registration at %s hospital has been accepted by admin</string>
-    <string name="registration_rejected_by_admin">Your registration at %s hospital has been rejected by admin</string>
+    <string name="registration_accept_by_admin">Your registration at %s hospital has been accepted</string>
+    <string name="registration_rejected_by_admin">Your registration at %s hospital has been rejected</string>
     <string name="new_registration">New Registration</string>
     <string name="new_registration_from_user">New registration from %s</string>
     <string name="check_your_email_and_change_password">Check your email and change password</string>

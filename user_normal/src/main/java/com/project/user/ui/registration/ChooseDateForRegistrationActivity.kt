@@ -110,7 +110,8 @@ class ChooseDateForRegistrationActivity : AppCompatActivity() {
                                     hospitalName = hospitalName,
                                     imageUrl = imageUrl,
                                     referredTo = referredTo,
-                                    statusRegistration = this@ChooseDateForRegistrationActivity.wait()
+                                    statusRegistration = this@ChooseDateForRegistrationActivity.wait(),
+                                    emailAdmin = hospital?.emailAdmin.toString()
                                 )
 
                             if (task.isSuccessful) registrationForDetail.photoUrl =
@@ -144,6 +145,7 @@ class ChooseDateForRegistrationActivity : AppCompatActivity() {
             "registrationDate" to registrationForDetail.registrationDate.toString(),
             "name" to registrationForDetail.name.toString(),
             "hospitalName" to registrationForDetail.hospitalName.toString(),
+            "emailAdmin" to registrationForDetail.emailAdmin.toString(),
             "imageUrl" to registrationForDetail.imageUrl.toString(),
             "acceptDate" to "",
             "statusRegistration" to this.wait(),

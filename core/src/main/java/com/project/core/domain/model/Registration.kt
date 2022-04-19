@@ -15,6 +15,7 @@ data class Registration(
     var acceptDate: String? = null,
     var name: String? = null,
     var hospitalName: String? = null,
+    var emailAdmin: String? = null,
     var imageUrl: String? = null,
     var note: String? = null,
     var statusRegistration: String? = null,
