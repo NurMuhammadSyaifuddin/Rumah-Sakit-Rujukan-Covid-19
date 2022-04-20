@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val auth by lazy { FirebaseAuth.getInstance() }
-    private val user by lazy { auth.currentUser }
     private val db by lazy { Firebase.firestore }
     private val ref by lazy { FirebaseStorage.getInstance().reference }
     private val viewModel: HomeViewModel by viewModel()
@@ -182,12 +181,12 @@ class HomeFragment : Fragment() {
 
     private fun getUser() {
         binding.apply {
-            viewModel.getCollectionUser(db, user?.uid.toString())
+            viewModel.getCollectionUser(db, auth.currentUser?.uid.toString())
                 .get()
                 .addOnCompleteListener { query ->
                     val data = query.result?.toObject(User::class.java)
 
-                    viewModel.storageReference(ref, user?.uid.toString())
+                    viewModel.storageReference(ref, auth.currentUser?.uid.toString())
                         .downloadUrl
                         .addOnCompleteListener {
                             if (it.isSuccessful) imgProfile.loadImage(it.result.toString())
@@ -218,7 +217,7 @@ class HomeFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         binding.loading.gone()
-                        binding.rvHospitals.visible()
+                        binding.rvHospitals.gone()
                         Toast.makeText(activity, hospital.message.toString(), Toast.LENGTH_SHORT)
                             .show()
                     }

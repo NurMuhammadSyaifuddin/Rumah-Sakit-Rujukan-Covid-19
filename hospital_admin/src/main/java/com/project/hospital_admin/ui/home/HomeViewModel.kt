@@ -11,6 +11,6 @@ class HomeViewModel: ViewModel() {
     fun collectionUser(db: FirebaseFirestore) =
         db.collection(PATH_USER)
 
-    fun collectionRegistration(db: FirebaseFirestore, hospitalName: String) =
-        db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(hospitalName)
+    fun collectionRegistration(db: FirebaseFirestore, emailAdmin: String) =
+        db.collection(PATH_REGISTRATION).document(PATH_ADMIN).collection(emailAdmin)
 }

@@ -76,9 +76,6 @@ dependencies {
     implementation "androidx.work:work-runtime:2.5.0"
     implementation 'com.loopj.android:android-async-http:1.4.10'
 
-    // LeakCanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
-
     // SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

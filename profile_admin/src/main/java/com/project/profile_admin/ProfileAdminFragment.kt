@@ -42,8 +42,6 @@ class ProfileAdminFragment : Fragment() {
 
     private val viewModel: ProfileAdminViewModel by viewModel()
 
-    private lateinit var alarmReceiver: ReceiveRegistrationService
-
     private val launchCamera =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -137,9 +135,6 @@ class ProfileAdminFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadKoinModules(profileAdminModule)
 
-        // init
-        alarmReceiver = ReceiveRegistrationService()
-
         onAction()
     }
 
@@ -153,7 +148,7 @@ class ProfileAdminFragment : Fragment() {
                     startActivity(intent)
                     activity?.finishAffinity()
                 }
-                alarmReceiver.cancelRepeatingAlarm(activity?.applicationContext as Context)
+                ReceiveRegistrationService().cancelRepeatingAlarm(activity?.applicationContext as Context)
             }
 
             btnEditName.setOnClickListener {

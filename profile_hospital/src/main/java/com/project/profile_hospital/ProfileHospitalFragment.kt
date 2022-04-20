@@ -48,7 +48,6 @@ class ProfileHospitalFragment : Fragment() {
 
     private val db by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
-    private val currentUser by lazy { auth.currentUser }
     private val ref by lazy { FirebaseStorage.getInstance().reference }
 
     private var hospitalAdmin: Hospital? = null
@@ -327,7 +326,7 @@ class ProfileHospitalFragment : Fragment() {
                                         query.toObject(User::class.java)
                                     }
                                     ?.filter { user ->
-                                        user.id == currentUser?.uid.toString() && user.status == HOSPITAL_ADMIN
+                                        user.id == auth.currentUser?.uid.toString() && user.status == HOSPITAL_ADMIN
                                     }
                                     ?.take(1)
                                     ?.toList()
