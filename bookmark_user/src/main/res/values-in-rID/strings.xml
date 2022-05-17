@@ -1,0 +1,5 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="empty_state_title_no_favorite_item">Belum da bookmark</string>
+    <string name="empty_state_desc_no_favorite_item_movie">Kamu tidak memiliki daftar bookmark rumah sakit</string>
+</resources>

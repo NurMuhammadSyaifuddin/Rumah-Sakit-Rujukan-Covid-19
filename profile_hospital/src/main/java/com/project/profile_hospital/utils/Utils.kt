@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.project.profile_hospital.databinding.LayoutBottomPickImageProfileBinding
-import com.project.profile_hospital.databinding.LayoutEditNameBinding
+import com.project.profile_hospital.databinding.LayoutEditNameHospitalBinding
+import com.project.profile_hospital.databinding.LayoutPickImageHospitalBinding
 
 fun showAlertDialogEditName(context: Context, name: String, titleDialog: String? = null, listenerSave: (String) -> Unit): AlertDialog {
-    val binding = LayoutEditNameBinding.inflate(LayoutInflater.from(context), null, false)
+    val binding = LayoutEditNameHospitalBinding.inflate(LayoutInflater.from(context), null, false)
     val dialog = MaterialAlertDialogBuilder(context)
         .setView(binding.root)
         .setCancelable(false)
@@ -33,7 +33,7 @@ fun showAlertDialogEditName(context: Context, name: String, titleDialog: String?
 }
 
 fun showBottomSheetDialogEditImage(context: Context, listenerPickCamera: () -> Unit, listenerPickGallery: () -> Unit): BottomSheetDialog{
-    val binding = LayoutBottomPickImageProfileBinding.inflate(LayoutInflater.from(context), null, false)
+    val binding = LayoutPickImageHospitalBinding.inflate(LayoutInflater.from(context), null, false)
 
     val dialog = BottomSheetDialog(context).apply {
         setContentView(binding.root)

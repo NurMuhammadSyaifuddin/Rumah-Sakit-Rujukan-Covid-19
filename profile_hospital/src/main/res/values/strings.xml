@@ -10,7 +10,7 @@
     <string name="name_changed_successfully">Name changed successfully</string>
     <string name="address_changed_successfully">Address changed successfully</string>
     <string name="enter_hosptital_address">Enter hospital address</string>
-    <string name="website_url_changed_successfully">Hospital address changed successfully</string>
+    <string name="website_url_changed_successfully">website url changed successfully</string>
     <string name="enter_website_url">Enter website url</string>
     <string name="phone_changed_successfully">Hospital phone changed successfuly</string>
     <string name="enter_hospital_phone">Enter hospital phone</string>

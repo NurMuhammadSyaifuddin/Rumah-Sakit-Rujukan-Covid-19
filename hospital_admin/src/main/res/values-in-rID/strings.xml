@@ -1,0 +1,24 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">Home</string>
+    <string name="profile">Profil</string>
+    <string name="activities">Activitas</string>
+    <string name="empty_state_title_no_activities_item">Belum ada aktivitas</string>
+    <string name="you_don_t_have_a_list_of_activities">Kamu tidak memiliki daftar aktivitas</string>
+    <string name="new_registration">Registrasi Baru</string>
+    <string name="new_registration_from_user">Registrasi dari %s</string>
+    <string name="hospital">Rumah Sakit</string>
+    <string name="write_your_notes_to_prospective_patients_optional">Tulis catatan kamu untuk calon pasien (opsional)</string>
+    <string name="note_optional">catatn: (opsional)</string>
+    <string name="reject">Tolak</string>
+    <string name="accept">Terima</string>
+    <string name="character_s_50">Karakter %s / 50</string>
+    <string name="note_max_50_char">Catatan maksimal hanya 50 karakter</string>
+    <string name="status_registration">Registrasi %s</string>
+    <string name="status_registration_content">Registrasi dari %s telah %s, dengan nomor registrasi %s</string>
+    <string name="approved">Disetujui</string>
+    <string name="rejected">Ditolak</string>
+    <string name="default_text">-</string>
+    <string name="are_you_sure_reject_this_registration">Apakah kamu yakin menolak registrasi ini?</string>
+    <string name="will_you_acceot_this_registration">Apakah kamu akan menerima pendaftaran ini?</string>
+</resources>

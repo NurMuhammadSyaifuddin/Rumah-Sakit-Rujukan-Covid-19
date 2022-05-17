@@ -135,18 +135,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (auth.currentUser != null){
-            viewModel.getLevelUser().observe(this){
-                when(it){
-                    USER_NORMAL -> moveToUserNormalModule()
-                    HOSPITAL_ADMIN -> moveToHospitalAdmin()
-                }
-            }
-        }
-    }
-
     private fun destinationUser(){
         viewModel.getCollectionUser(db)
             .get()

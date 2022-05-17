@@ -89,7 +89,7 @@ class ChooseDateForRegistrationActivity : AppCompatActivity() {
 
                     val id = getRandomIdString()
                     val idUser = currentUser?.uid.toString()
-                    val registrationNumber = getRandomIdNumber()
+                    val registrationNumber = getRandomIdNumber() + user?.id?.takeLast(4)
                     val registrationDate = getCurrentTime()
                     val name = user?.name.toString()
                     val imageUrl = hospital?.imageUrl.toString()
@@ -194,7 +194,7 @@ class ChooseDateForRegistrationActivity : AppCompatActivity() {
                 CHANNEL_ID
             )
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_notif)
                 .setContentTitle(getString(R.string.registration_wait_title))
                 .setContentText(
                     getString(

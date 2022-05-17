@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/textColorPrimaryDark"
-        android:text="@string/character_s_100"
+        android:text="@string/character_s_50"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/text_view_title"
         app:layout_constraintStart_toStartOf="@id/text_view_title"

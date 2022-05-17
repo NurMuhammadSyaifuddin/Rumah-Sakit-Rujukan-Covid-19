@@ -1,0 +1,20 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="maps">Maps</string>
+    <string name="start_navigation">Mulai Navigasi</string>
+    <string name="enter_hospital_name">Masukan nama rumah sakit</string>
+    <string name="save">Simpan</string>
+    <string name="photo_profile">Foto Rumah Sakit</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="name_changed_successfully">Nama rumah sakit berhasil diperbarui</string>
+    <string name="address_changed_successfully">Alamat berhasil diperbarui</string>
+    <string name="enter_hosptital_address">Masukan alamat rumah sakit</string>
+    <string name="website_url_changed_successfully">Url website berhasil diperbarui</string>
+    <string name="enter_website_url">Masukan url website</string>
+    <string name="phone_changed_successfully">Nomor rumah sakit berhasil diperbarui</string>
+    <string name="enter_hospital_phone">Masukan nomor rumah sakit</string>
+    <string name="phone_is_copied">%s telah disalin</string>
+    <string name="label">Nomor telepon disalin</string>
+    <string name="hospital_image_updated">Foto rumah sakit berhasil diperbarui</string>
+</resources>

@@ -31,14 +31,14 @@
     <string name="title_hospital_admin">Hospital Admin</string>
     <string name="email_not_verify">Email not verified, please check your email</string>
     <string name="title_bookmark_user">Bookmark</string>
-    <string name="title_history_user">HIstory</string>
-    <string name="title_profile_user">Profile User</string>
+    <string name="title_history_user">History</string>
+    <string name="title_profile_user">User Profile</string>
     <string name="loading">Loading…</string>
     <string name="email_admin_not_valid">Sorry, your email is not registered as admin</string>
-    <string name="title_profile_admin">Profile Admin</string>
+    <string name="title_profile_admin">Admin Profile</string>
     <string name="this_is_the_hospital_where_you_work">This is the hospital where you work</string>
     <string name="yes">OK</string>
-    <string name="title_profile_hospital">Profile Hospital</string>
+    <string name="title_profile_hospital">Hospital Profile</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -63,4 +63,5 @@
     <string name="new_registration">New Registration</string>
     <string name="new_registration_from_user">New registration from %s</string>
     <string name="check_your_email_and_change_password">Check your email and change password</string>
+    <string name="rscov">RSCov</string>
 </resources>

@@ -13,7 +13,7 @@ import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
 import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
 import com.project.core.utils.wait
-import com.project.hospital_admin.databinding.FragmentHomeBinding
+import com.project.hospital_admin.databinding.FragmentHomeAdminBinding
 import com.project.hospital_admin.di.registrationModule
 import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
 import com.project.hospital_admin.ui.registration.CheckingRegistrationActivity
@@ -25,8 +25,8 @@ import org.koin.core.context.unloadKoinModules
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeAdminBinding? = null
+    private lateinit var binding: FragmentHomeAdminBinding
 
     private val db by lazy { FirebaseFirestore.getInstance() }
     private val auth by lazy { FirebaseAuth.getInstance() }
@@ -42,9 +42,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
         if (_binding != null) {
-            binding = _binding as FragmentHomeBinding
+            binding = _binding as FragmentHomeAdminBinding
         }
         return binding.root
     }

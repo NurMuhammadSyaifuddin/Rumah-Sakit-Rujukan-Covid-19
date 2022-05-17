@@ -243,7 +243,7 @@ class DetailActivity : AppCompatActivity() {
     private fun setStatusBookmark(state: Boolean) {
         binding.apply {
             if (state) {
-                btnBookmark.setImageResource(R.drawable.ic_bookmark)
+                btnBookmark.setImageResource(R.drawable.ic_bookmark_user)
                 btnBookmark.imageTintList = ColorStateList.valueOf(Color.RED)
             } else {
                 btnBookmark.setImageResource(R.drawable.ic_out_bookmark)

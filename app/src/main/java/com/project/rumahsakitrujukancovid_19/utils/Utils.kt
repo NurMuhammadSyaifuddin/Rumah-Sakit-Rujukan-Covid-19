@@ -17,11 +17,11 @@ import com.project.rumahsakitrujukancovid_19.databinding.LayoutAlertSignUpBindin
 import com.project.rumahsakitrujukancovid_19.databinding.LayoutAlreadyRegisteredBinding
 import com.project.rumahsakitrujukancovid_19.databinding.LayoutLoadingBinding
 
-const val PATH_USER = "user"
+const val PATH_USER = "users"
 const val USER_NORMAL = "user_normal"
 const val HOSPITAL_ADMIN = "hospital admin"
 const val PATH_HOSPITAL = "hospital"
-const val PATH_FAVORITE = "favorite"
+const val PATH_BOOKMARK = "bookmark"
 const val USER_KEY = "user_key"
 
 const val EXTRA_DATA_FOR_DETAIL = "extra_data_for_detail"

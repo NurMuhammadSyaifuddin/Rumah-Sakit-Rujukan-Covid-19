@@ -46,7 +46,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                         )
                         tvStatusRegistration.background = ResourcesCompat.getDrawable(
                             itemView.resources,
-                            R.drawable.bg_status_wait,
+                            R.drawable.bg_wait,
                             null
                         )
                     }
@@ -61,7 +61,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                         )
                         tvStatusRegistration.background = ResourcesCompat.getDrawable(
                             itemView.resources,
-                            R.drawable.bg_status_accept,
+                            R.drawable.bg_accept,
                             null
                         )
                     }
@@ -76,7 +76,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                         )
                         tvStatusRegistration.background = ResourcesCompat.getDrawable(
                             itemView.resources,
-                            R.drawable.bg_status_reject,
+                            R.drawable.bg_reject,
                             null
                         )
                     }

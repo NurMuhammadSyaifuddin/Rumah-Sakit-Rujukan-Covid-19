@@ -1,0 +1,13 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="logout">Keluar</string>
+    <string name="default_text">-</string>
+    <string name="enter_your_name">Masukan nama kamu</string>
+    <string name="save">Simpan</string>
+    <string name="name_change_success">Nama kamu berhasil diperbarui</string>
+    <string name="photo_profile">Foto Profil</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="image_profile_updated">Foto profil kamu berhasil diperbarui</string>
+    <string name="delete_image_success">Foto profil kamu berhasil dihapus</string>
+</resources>

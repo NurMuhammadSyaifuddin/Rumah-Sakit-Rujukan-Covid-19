@@ -10,6 +10,7 @@ import com.project.rumahsakitrujukancovid_19.preference.LevelUserPreference
 import com.project.rumahsakitrujukancovid_19.ui.admin.HospitalAdminLocationViewModel
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginViewModel
 import com.project.rumahsakitrujukancovid_19.ui.signup.SignUpViewModel
+import com.project.rumahsakitrujukancovid_19.ui.splashscreen.SplashScreenViewModel
 import com.project.rumahsakitrujukancovid_19.utils.USER_NORMAL
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -22,6 +23,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { SignUpViewModel(get(), get()) }
     viewModel { HospitalAdminLocationViewModel(get(), get()) }
+    viewModel { SplashScreenViewModel(get()) }
 }
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = USER_NORMAL)

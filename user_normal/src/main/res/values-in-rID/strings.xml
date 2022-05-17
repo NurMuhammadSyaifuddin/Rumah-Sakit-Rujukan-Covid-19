@@ -1,0 +1,37 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">Home</string>
+    <string name="activity">Aktivitas</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="profile">Profil</string>
+    <string name="default_text">-</string>
+    <string name="find_your_destination_hospital">Temukan tujuan rumah sakit kamu</string>
+    <string name="find_a_hospital">Temukan Rumah Sakit</string>
+    <string name="say_hello_to_user">Hai, %s</string>
+    <string name="maps">Maps</string>
+    <string name="start_navigation">Mulai Navigasi</string>
+    <string name="register">Register</string>
+    <string name="label">Nomor telepon disalin</string>
+    <string name="remove_bookmark">%s dihapus dari bookmark</string>
+    <string name="add_bookmark">%s ditambahkan ke bookmark</string>
+    <string name="phone_is_copied">%s telah disalin</string>
+    <string name="empty_search_hospital">Tidak ditemukan rumah sakit dari hasil pencarian \'%s\'</string>
+    <string name="ok">OK</string>
+    <string name="queueu_number">Nomor antrian:</string>
+    <string name="registration_number">Nomor Registrasi</string>
+    <string name="date">Tanggal</string>
+    <string name="hospital_name">Nama Rumah Sakit</string>
+    <string name="status">Status</string>
+    <string name="accept_date">Diterima Tanggal</string>
+    <string name="admin_notes">Catatan Admin</string>
+    <string name="registration">Registrasi</string>
+    <string name="registration_wait_title">Menunggu Konfirmasi Registrasi</string>
+    <string name="register_wait">Kamu telah berhasil registrasi di Rumah Sakit %s, Tunggu admin untuk mengkonfirmasi registrasi kamu</string>
+    <string name="signed_up_today">Kamu telah mendaftar di Rumah Sakit %s hari ini, tunggu admin untuk menanggapi registrasi kamu</string>
+    <string name="signed_up_today_accept">Registrasi kamu sudah diterima admin hari ini, silahkan segera rujuk ke rumah sakit yang kamu tuju</string>
+    <string name="not_yet_admin">Saat ini kamu tidak dapat registrasi, karena Rumah Sakit %s belum memiliki admin</string>
+    <string name="choose_referral_date">Pilih tanggal rujukan</string>
+    <string name="please_select">Silakan pilih</string>
+    <string name="only_weekdays_to_registration">Maaf, registrasi hanya dapat dilakukan pada hari senin-jumat</string>
+    <string name="referred_to">Dirujuk ke</string>
+</resources>

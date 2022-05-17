@@ -54,7 +54,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
     private fun onAction() {
         binding.apply {
 
-            tvCharCount.text = getString(R.string.character_s_100, 0.toString())
+            tvCharCount.text = getString(R.string.character_s_50, 0.toString())
 
             val noteStream = RxTextView.textChanges(edtNote)
                 .skipInitialValue()
@@ -76,7 +76,10 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         getString(R.string.are_you_sure_reject_this_registration)
                     ) {
                         loading.show()
-                        processedRegistration(registration, this@CheckingRegistrationActivity.rejected())
+                        processedRegistration(
+                            registration,
+                            this@CheckingRegistrationActivity.rejected()
+                        )
                     }.show()
                 }
 
@@ -87,7 +90,10 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                         getString(R.string.will_you_acceot_this_registration)
                     ) {
                         loading.show()
-                        processedRegistration(registration, this@CheckingRegistrationActivity.accepted())
+                        processedRegistration(
+                            registration,
+                            this@CheckingRegistrationActivity.accepted()
+                        )
                     }.show()
                 }
 
@@ -117,31 +123,22 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                     viewModel.getCollectionRegistrationAdmin(db, user[0]?.email.toString())
                         .get()
                         .addOnSuccessListener { task ->
-                            val registrations = task.documents.asSequence()
+                            val registrations = task.documents
                                 .map { snapshot ->
                                     snapshot.toObject(Registration::class.java)
                                 }
                                 .filter { value ->
-                                    val dateArray =
-                                        value?.registrationDate?.split(" ")?.toTypedArray()
-                                    val date = dateArray?.get(0)
-                                    registration?.referredTo == value?.referredTo && isCurrentTimeTheSame(
-                                        date.toString()
-                                    )
+                                    registration?.referredTo == value?.referredTo && value?.statusRegistration != this.rejected()
                                 }
                                 .sortedBy { data ->
                                     data?.registrationDate
                                 }
-                                .toList()
 
                             if (registrations.isNotEmpty()) {
                                 val queue =
-                                    if (statusRegistration == this.accepted()) {
-                                        val index = registrations.indexOf(
-                                            registration
-                                        ) + 1
-                                        if ( index == 0) 1 else index
-                                    } else 0
+                                    if (statusRegistration == this.accepted()) registrations.indexOf(
+                                        registration
+                                    ) + 1 else 0
 
                                 val statusReferredTo =
                                     if (statusRegistration == this.accepted()) registration?.referredTo.toString() else getString(
@@ -175,7 +172,8 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                 .isNotBlank()
         ) binding.edtNote.text.toString() else getString(R.string.default_text)
 
-        val acceptDate = if (statusRegistration == this.accepted()) getCurrentTime() else getString(R.string.default_text)
+        val acceptDate =
+            if (statusRegistration == this.accepted()) getCurrentTime() else getString(R.string.default_text)
 
         viewModel.collectionRegistration(
             db,
@@ -263,7 +261,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                 CHANNEL_ID
             )
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(getString(R.string.status_registration, title))
                 .setContentText(
                     getString(
@@ -311,7 +309,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
     private fun showNoteExistAlert(isNotValid: Boolean) {
         binding.apply {
             if (isNotValid) {
-                textInputHospital.error = getString(R.string.note_max_100_char)
+                textInputHospital.error = getString(R.string.note_max_50_char)
                 btnAccept.disable()
                 btnReject.disable()
             } else {
@@ -324,7 +322,7 @@ class CheckingRegistrationActivity : AppCompatActivity() {
                 val charNoteCount = edtNote.text.length.toString()
 
                 withContext(Dispatchers.Main) {
-                    tvCharCount.text = getString(R.string.character_s_100, charNoteCount)
+                    tvCharCount.text = getString(R.string.character_s_50, charNoteCount)
                 }
             }
 

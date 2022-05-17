@@ -49,13 +49,17 @@
 
     <TextView
         android:id="@+id/tv_say_hello_user"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dp_0"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginTop="@dimen/dp_24"
         android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/img_profile"
         tools:text="Hi, Nur Muhammad Syaifuddin" />
