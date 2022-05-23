@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/tv_registration_date"/>
+        app:layout_constraintBottom_toBottomOf="@id/tv_referred_to"/>
 
     <TextView
         android:id="@+id/tv_type_activities"
@@ -67,6 +67,20 @@
         app:layout_constraintTop_toBottomOf="@id/tv_registration_number"
         app:layout_constraintStart_toStartOf="@id/tv_registration_number"
         app:layout_constraintEnd_toEndOf="@id/tv_registration_number"
+        app:layout_constraintBottom_toTopOf="@id/tv_referred_to"/>
+
+    <TextView
+        android:id="@+id/tv_referred_to"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/textColorPrimaryLight"
+        android:textStyle="bold"
+        android:text="@string/referred_to"
+        android:layout_marginTop="@dimen/dp_4"
+        app:layout_constraintTop_toBottomOf="@id/tv_registration_date"
+        app:layout_constraintStart_toStartOf="@id/tv_registration_date"
+        app:layout_constraintEnd_toEndOf="@id/tv_registration_date"
         app:layout_constraintBottom_toBottomOf="@id/img_hospital"/>
 
     <TextView
@@ -81,16 +95,17 @@
         tools:text="Menunggu Konfirmasi"
         android:layout_marginTop="@dimen/dp_16"
         android:layout_marginBottom="@dimen/dp_24"
-        app:layout_constraintEnd_toEndOf="@id/tv_registration_date"
-        app:layout_constraintTop_toBottomOf="@id/tv_registration_date"
+        app:layout_constraintEnd_toEndOf="@id/tv_referred_to"
+        app:layout_constraintTop_toBottomOf="@id/tv_referred_to"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
+        android:id="@+id/view_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:background="@color/textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintEnd_toEndOf="@id/tv_status_registration"
+        app:layout_constraintStart_toStartOf="@id/tv_status_registration"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

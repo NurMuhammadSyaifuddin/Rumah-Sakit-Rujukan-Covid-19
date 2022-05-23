@@ -21,4 +21,5 @@
     <string name="default_text">-</string>
     <string name="are_you_sure_reject_this_registration">Are you sure you rejected this registration?</string>
     <string name="will_you_acceot_this_registration">Will you accept this registration?</string>
+    <string name="referred_to">Referred to: %s</string>
 </resources>

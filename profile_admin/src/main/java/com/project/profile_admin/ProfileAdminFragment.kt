@@ -23,6 +23,7 @@ import com.project.profile_admin.utils.showAlertDialogEditName
 import com.project.profile_admin.utils.showBottomSheetDialogEditImage
 import com.project.rumahsakitrujukancovid_19.notification.ReceiveRegistrationService
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginActivity
+import com.project.rumahsakitrujukancovid_19.utils.enable
 import com.project.rumahsakitrujukancovid_19.utils.loadImage
 import com.project.rumahsakitrujukancovid_19.utils.showToast
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -112,6 +113,8 @@ class ProfileAdminFragment : Fragment() {
                             }
                         tvNameAdmin.text = result?.name.toString()
                         tvEmailAdmin.text = result?.email.toString()
+
+                        btnLogoutAdmin.enable()
                     }
             } catch (e: Exception) {
                 Timber.e(e.message.toString())

@@ -9,7 +9,7 @@
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1635" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/drawable/ic_launcher_notif.xml" value="0.1045" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/drawable/ic_remove.xml" value="0.1045" />
-        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/layout/fragment_activities_user.xml" value="0.25" />
+        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/layout/fragment_activities_user.xml" value="0.44114636642784033" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/activity_user/src/main/res/layout/item_registration.xml" value="0.25" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/drawable-v24/bg_btn_cancel.xml" value="0.1085" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/drawable-v24/bg_btn_next.xml" value="0.1085" />
@@ -35,7 +35,7 @@
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_hospital_admin_location.xml" value="0.22447916666666667" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
-        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_sign_up.xml" value="0.16" />
+        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/dialog_success_create_account.xml" value="0.22" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/app/src/main/res/layout/layout_alert_sign_up.xml" value="0.25" />
@@ -89,14 +89,14 @@
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/fragment_home_admin.xml" value="0.22" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/item_registration.xml" value="0.33" />
-        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/item_registration_admin.xml" value="0.17889492753623187" />
+        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/item_registration_admin.xml" value="0.22" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/layout/layout_alert_checking_registration.xml" value="0.21" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/hospital_admin/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/drawable/bg_btn_item_pick.xml" value="0.1045" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/drawable/bg_edit_profile.xml" value="0.2265" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/drawable/bg_logout.xml" value="0.1635" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/drawable/bg_pick.xml" value="0.1045" />
-        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/layout/fragment_profile_admin.xml" value="0.17889492753623187" />
+        <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/layout/fragment_profile_admin.xml" value="0.25" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/layout/layout_bottom_pick.xml" value="0.1" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/layout/layout_bottom_pick_image_profile.xml" value="0.17889492753623187" />
         <entry key="..\:/PROJECT/KP/RumahSakitRujukanCovid-19/profile_admin/src/main/res/layout/layout_edit_name.xml" value="0.17889492753623187" />

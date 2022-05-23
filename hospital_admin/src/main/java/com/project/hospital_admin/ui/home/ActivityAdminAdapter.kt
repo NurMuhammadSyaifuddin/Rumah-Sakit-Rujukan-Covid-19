@@ -33,6 +33,7 @@ class ActivityAdminAdapter: RecyclerView.Adapter<ActivityAdminAdapter.ViewHolder
                 tvName.text = item.name.toString()
                 tvRegistrationNumber.text = item.registrationNumber.toString()
                 tvRegistrationDate.text = item.registrationDate.toString()
+                tvReferredTo.text = itemView.resources.getString(R.string.referred_to, item.referredTo.toString())
 
                 when (val status = item.statusRegistration) {
                     itemView.context.wait() -> {

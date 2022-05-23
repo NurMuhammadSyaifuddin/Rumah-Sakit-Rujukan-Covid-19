@@ -25,6 +25,7 @@ import com.project.profile_user.utils.showAlertDialogEditName
 import com.project.profile_user.utils.showBottomSheetDialogEditImage
 import com.project.rumahsakitrujukancovid_19.notification.ReceiveResultCheckingActivityService
 import com.project.rumahsakitrujukancovid_19.ui.login.LoginActivity
+import com.project.rumahsakitrujukancovid_19.utils.enable
 import com.project.rumahsakitrujukancovid_19.utils.showToast
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -321,6 +322,8 @@ class ProfileUserFragment : Fragment() {
 
                         tvNameUser.text = result?.name.toString()
                         tvEmailUser.text = result?.email.toString()
+
+                        btnLogoutUser.enable()
                     }
             } catch (e: Exception) {
                 Timber.d(e.message.toString())
