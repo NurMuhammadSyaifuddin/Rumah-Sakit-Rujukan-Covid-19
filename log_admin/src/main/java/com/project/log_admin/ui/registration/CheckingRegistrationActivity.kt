@@ -1,4 +1,4 @@
-package com.project.hospital_admin.ui.registration
+package com.project.log_admin.ui.registration
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -17,10 +17,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.project.core.domain.model.Registration
 import com.project.core.domain.model.User
-import com.project.core.utils.*
-import com.project.hospital_admin.R
-import com.project.hospital_admin.databinding.ActivityCheckingRegistrationBinding
-import com.project.hospital_admin.utils.showAlertDialogCheckingRegistration
+import com.project.core.utils.EXTRA_DATA_FOR_REGISTRATION
+import com.project.core.utils.accepted
+import com.project.core.utils.getCurrentTime
+import com.project.core.utils.rejected
+import com.project.log_admin.R
+import com.project.log_admin.databinding.ActivityCheckingRegistrationBinding
+import com.project.log_admin.ui.utils.showAlertDialogCheckingRegistration
 import com.project.rumahsakitrujukancovid_19.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

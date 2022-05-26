@@ -36,12 +36,16 @@ class MainHospitalAdminActivity : AppCompatActivity() {
                         viewPager2.currentItem = 0
                         return@setOnNavigationItemSelectedListener true
                     }
-                    R.id.navigation_profile_hospital -> {
+                    R.id.navigation_log -> {
                         viewPager2.currentItem = 1
                         return@setOnNavigationItemSelectedListener true
                     }
-                    R.id.navigation_profile -> {
+                    R.id.navigation_profile_hospital -> {
                         viewPager2.currentItem = 2
+                        return@setOnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_profile -> {
+                        viewPager2.currentItem = 3
                         return@setOnNavigationItemSelectedListener true
                     }
                     else -> false

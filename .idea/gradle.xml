@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/bookmark_user" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/hospital_admin" />
+            <option value="$PROJECT_DIR$/log_admin" />
             <option value="$PROJECT_DIR$/profile_admin" />
             <option value="$PROJECT_DIR$/profile_hospital" />
             <option value="$PROJECT_DIR$/profile_user" />

@@ -35,6 +35,7 @@ class ActivityUserAdapter : RecyclerView.Adapter<ActivityUserAdapter.ViewHolder>
                 tvHospitalName.text = item.hospitalName.toString()
                 tvRegistrationNumber.text = item.registrationNumber.toString()
                 tvRegistrationDate.text = item.registrationDate.toString()
+                tvReferredTo.text = itemView.context.getString(R.string.referred_to, item.referredTo.toString())
 
                 when (val status = item.statusRegistration) {
                     itemView.context.wait() -> {

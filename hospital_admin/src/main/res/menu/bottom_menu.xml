@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_home"/>
 
     <item
+        android:id="@+id/navigation_log"
+        android:title="@string/log"
+        android:icon="@drawable/ic_log"/>
+
+    <item
         android:id="@+id/navigation_profile_hospital"
         android:title="@string/hospital"
         android:icon="@drawable/ic_hospital"/>

@@ -34,4 +34,5 @@
     <string name="please_select">Silakan pilih</string>
     <string name="only_weekdays_to_registration">Maaf, registrasi hanya dapat dilakukan pada hari senin-jumat</string>
     <string name="referred_to">Dirujuk ke</string>
+    <string name="referred_to_date">Dirujuk pada: %s</string>
 </resources>

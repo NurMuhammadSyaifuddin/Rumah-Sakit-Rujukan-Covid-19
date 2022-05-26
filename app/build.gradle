@@ -43,7 +43,7 @@ android {
             abortOnError false
         }
     }
-    dynamicFeatures = [':user_normal', ':hospital_admin', ':bookmark_user', ':activity_user', ':profile_user', ':profile_admin', ':profile_hospital']
+    dynamicFeatures = [':user_normal', ':hospital_admin', ':bookmark_user', ':activity_user', ':profile_user', ':profile_admin', ':profile_hospital', ':log_admin']
 }
 
 dependencies {

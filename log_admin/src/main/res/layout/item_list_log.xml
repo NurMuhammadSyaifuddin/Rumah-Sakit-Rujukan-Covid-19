@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_8"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="27-05-2022"
+        android:textStyle="bold"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginStart="@dimen/dp_8"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/textColorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/view_line"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="@dimen/dp_2"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:background="@color/textColorPrimaryDark"
+        app:layout_constraintTop_toTopOf="@id/tv_date"
+        app:layout_constraintStart_toEndOf="@id/tv_date"
+        app:layout_constraintBottom_toBottomOf="@id/tv_date"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_count_waiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0"
+        android:textSize="@dimen/sp_48"
+        android:textColor="@color/textColorPrimaryLight"
+        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        app:layout_constraintStart_toStartOf="@id/tv_date"
+        app:layout_constraintEnd_toStartOf="@id/tv_count_reject"/>
+
+    <TextView
+        android:id="@+id/tv_count_reject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0"
+        android:textSize="@dimen/sp_48"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintTop_toTopOf="@id/tv_count_waiting"
+        app:layout_constraintStart_toEndOf="@id/tv_count_waiting"
+        app:layout_constraintEnd_toStartOf="@id/tv_count_accept"/>
+
+    <TextView
+        android:id="@+id/tv_count_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0"
+        android:textSize="@dimen/sp_48"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="@id/tv_count_reject"
+        app:layout_constraintStart_toEndOf="@id/tv_count_reject"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_view_waiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/waiting_confirmation"
+        android:textSize="@dimen/sp_12"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/textColorPrimary"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_count_waiting"
+        app:layout_constraintStart_toStartOf="@id/tv_count_waiting"
+        app:layout_constraintEnd_toEndOf="@id/tv_count_waiting"/>
+
+    <TextView
+        android:id="@+id/text_view_reject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rejected"
+        android:textSize="@dimen/sp_12"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/textColorPrimary"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_count_reject"
+        app:layout_constraintStart_toStartOf="@id/tv_count_reject"
+        app:layout_constraintEnd_toEndOf="@id/tv_count_reject"/>
+
+    <TextView
+        android:id="@+id/text_view_accept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accepted"
+        android:textSize="@dimen/sp_12"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/textColorPrimary"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_count_accept"
+        app:layout_constraintStart_toStartOf="@id/tv_count_accept"
+        app:layout_constraintEnd_toEndOf="@id/tv_count_accept"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

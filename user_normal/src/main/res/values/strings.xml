@@ -34,4 +34,5 @@
     <string name="please_select">Please select</string>
     <string name="only_weekdays_to_registration">Sorry, registration can only be done Monday-Friday</string>
     <string name="referred_to">Referred To</string>
+    <string name="referred_to_date">Referred To: %s</string>
 </resources>

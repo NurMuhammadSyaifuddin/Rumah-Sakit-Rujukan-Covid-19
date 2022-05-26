@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_arrow_back"
+        android:background="@android:color/transparent"
+        app:tint="@color/textColorPrimaryDark"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginStart="@dimen/dp_32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/write_your_notes_to_prospective_patients_optional"
+        android:textSize="@dimen/sp_20"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/textColorPrimary"
+        android:layout_marginStart="@dimen/dp_32"
+        android:layout_marginEnd="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_32"
+        app:layout_constraintTop_toBottomOf="@id/img_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_char_count"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/textColorPrimaryDark"
+        android:text="@string/character_s_50"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_view_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_title"
+        app:layout_constraintEnd_toEndOf="@id/text_view_title"
+        android:layout_marginTop="@dimen/dp_32"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_hospital"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        app:hintEnabled="false"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="@id/text_view_title"
+        app:layout_constraintStart_toStartOf="@id/text_view_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_char_count">
+
+        <EditText
+            android:id="@+id/edt_note"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_128"
+            android:textAlignment="textStart"
+            android:background="@drawable/bg_edit_text"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="start"
+            android:hint="@string/note_optional"
+            android:inputType="none"
+            android:padding="@dimen/dp_16"
+            android:textSize="@dimen/sp_16"
+            tools:text="Nur Muhammad Syaifuddin Nur Muhammad SyaifuddindddNur Muhammad Syaifuddin Nur Muhammad Syaifuddinddd"
+            tools:ignore="Autofill" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_reject"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/bg_btn_red"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/reject"
+        android:layout_marginEnd="@dimen/dp_4"
+        android:theme="@style/MyButtonTheme.RED"
+        app:layout_constraintEnd_toStartOf="@id/btn_accept"
+        app:layout_constraintStart_toStartOf="@id/text_input_hospital"
+        app:layout_constraintTop_toBottomOf="@id/text_input_hospital" />
+
+    <Button
+        android:id="@+id/btn_accept"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@drawable/bg_btn_green"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/accept"
+        android:layout_marginStart="@dimen/dp_4"
+        app:layout_constraintStart_toEndOf="@id/btn_reject"
+        app:layout_constraintEnd_toEndOf="@id/text_input_hospital"
+        app:layout_constraintTop_toBottomOf="@id/text_input_hospital" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

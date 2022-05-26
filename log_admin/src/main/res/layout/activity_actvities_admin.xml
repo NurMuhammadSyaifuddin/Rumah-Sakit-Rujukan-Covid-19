@@ -12,15 +12,15 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/text_view_activities"
+            android:id="@+id/tv_date"
             android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:padding="@dimen/dp_8"
-            android:text="@string/activities"
+            tools:text="27-05-2022"
             android:textColor="@color/textColorPrimary"
-            android:textSize="@dimen/sp_32"
+            android:textSize="@dimen/sp_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,12 +32,12 @@
             android:layout_marginTop="@dimen/dp_8"
             android:clipToPadding="false"
             android:padding="@dimen/dp_4"
+            tools:listitem="@layout/item_activities_admin"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_activities"
-            tools:listitem="@layout/item_activities_admin" />
+            app:layout_constraintTop_toBottomOf="@id/tv_date"/>
 
         <ImageView
             android:id="@+id/img_empty_state"
@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toTopOf="@id/title_empty_state"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_activities"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"
             app:layout_constraintVertical_chainStyle="packed"
             tools:ignore="ContentDescription" />
 

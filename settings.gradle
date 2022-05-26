@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Rumah Sakit Rujukan Covid-19"
 include ':app', ':user_normal', ':core', ':hospital_admin', ':bookmark_user', ':activity_user', ':profile_user', ':profile_admin', ':profile_hospital'
+include ':log_admin'

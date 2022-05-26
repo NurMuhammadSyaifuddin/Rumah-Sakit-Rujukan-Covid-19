@@ -1,0 +1,23 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="waiting_confirmation">Waiting</string>
+    <string name="log">Log</string>
+    <string name="empty_state_title_no_activities_item">No log yet</string>
+    <string name="you_don_t_have_a_list_of_log">You don\'t have a list of activities</string>
+    <string name="referred_to">Referred to: %s</string>
+    <string name="you_don_t_have_a_list_of_activities">You don\'t have a list of activities</string>
+    <string name="write_your_notes_to_prospective_patients_optional">Write your notes to prospective patients (optional)</string>
+    <string name="character_s_50">"Character %s / 50 "</string>
+    <string name="note_optional">note: (opsional)</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="are_you_sure_reject_this_registration">Are you sure you rejected this registration?</string>
+    <string name="will_you_acceot_this_registration">Will you accept this registration?</string>
+    <string name="default_text">-</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="status_registration">Registration %s</string>
+    <string name="status_registration_content">Registration from %s has been %s, with registration number %s</string>
+    <string name="note_max_50_char">Note the maximum is only 50 characters</string>
+</resources>
