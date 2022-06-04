@@ -2,8 +2,6 @@ package com.project.core.domain.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import com.google.firebase.firestore.PropertyName
-import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

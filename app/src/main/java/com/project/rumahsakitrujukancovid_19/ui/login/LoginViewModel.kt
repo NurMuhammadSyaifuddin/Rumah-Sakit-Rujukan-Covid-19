@@ -13,8 +13,6 @@ class LoginViewModel(private val pref: LevelUserPreference): ViewModel() {
     fun getCollectionUser(db: FirebaseFirestore) =
         db.collection(PATH_USER)
 
-    fun getLevelUser() = pref.getLevelUser().asLiveData()
-
     fun saveLevelUser(level: String) {
         viewModelScope.launch {
             pref.saveLevelUser(level)
