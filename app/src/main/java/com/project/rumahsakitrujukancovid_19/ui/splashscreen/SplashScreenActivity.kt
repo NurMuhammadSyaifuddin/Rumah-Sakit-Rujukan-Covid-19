@@ -45,6 +45,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     .postDelayed({
                         Intent(this@SplashScreenActivity, LoginActivity::class.java).also { intent ->
                             startActivity(intent)
+                            finishAffinity()
                         }
                     }, 400L)
             }

@@ -2,7 +2,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home">Home</string>
     <string name="profile">Profil</string>
-    <string name="activities">Activitas</string>
+    <string name="activities">Aktivitas</string>
     <string name="empty_state_title_no_activities_item">Belum ada aktivitas</string>
     <string name="you_don_t_have_a_list_of_activities">Kamu tidak memiliki daftar aktivitas</string>
     <string name="new_registration">Registrasi Baru</string>
